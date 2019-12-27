@@ -283,7 +283,6 @@ def provider(message):
 
 
     back = types.KeyboardButton("بازگشت")
-    keyboard.add(kargahHa)
     keyboard.add(alirezaRezaei)
     keyboard.add(behzadMoshiri)
     keyboard.add(ehsanEmamjomezadeh)
