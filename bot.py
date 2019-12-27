@@ -27,7 +27,7 @@ class Pm:
 def first_step(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     universityMap = types.KeyboardButton("نقشه دانشگاه")
-    tables = types.KeyboardButton("جدول زمان بندی سمینار ها و کارگاه ها")
+    tables = types.KeyboardButton("زمان بندی کارگاه‌ها")
     introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
     vote = types.KeyboardButton("نظرسنجی")
     contact = types.KeyboardButton("ارتباط با ادمین")
@@ -48,14 +48,9 @@ def choosing_one(message):
             photo = open("/home/wssbot/kuroky.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text == "جدول زمان بندی سمینار ها و کارگاه ها":
+        elif message.text == "زمان بندی کارگاه‌ها":
             photo = open("/home/wssbot/kargahHa.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo , caption= "\n  ❄️معرفی کارگاه‌های پنجمین سری سمینارهای زمستانه شریف"
-                                                             "📅۷ الی ۱۱ دی‌ماه\n"
-                                                             "\n🏛دانشگاه صنعتی شریف"
-                                                             "✨️تخفیف ویژه ثبت‌نام در کارگاه‌ها به همراه سمینار در پنجمین سری سمینار‌های زمستانه\n\n"
-                                                             "🔹کسب اطلاعات بیشتر و ثبت‌نام کارگاه‌ها : \n"
-                                                             "\nhttp://wss.ce.sharif.ir/go/WSS2019")
+            msg = bot.send_photo(message.chat.id, photo)
             bot.register_next_step_handler(msg, choosing_one)
         elif message.text == "آشنایی با ارائه دهنده ها":
             msg = bot.send_message(message.chat.id, "فردی را انتخاب کنید")
@@ -71,7 +66,7 @@ def choosing_one(message):
             bot.register_next_step_handler(msg, vote_part)
 
         elif message.text == "ارتباط با ادمین":
-            msg = bot.send_message(message.chat.id, "لطفا با @TheMightyM تماس بگیرید")
+            msg = bot.send_message(message.chat.id, "لطفا با @atenasaghi تماس بگیرید")
             bot.register_next_step_handler(msg, choosing_one)
         else:
             raise Exception
@@ -85,7 +80,7 @@ def vote_part(message):
         if message.text == "نظرسنجی کلی رویداد" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             universityMap = types.KeyboardButton("نقشه دانشگاه")
-            tables = types.KeyboardButton("جدول زمان بندی سمینار ها و کارگاه ها")
+            tables = types.KeyboardButton("زمان بندی کارگاها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
             contact = types.KeyboardButton("ارتباط با ادمین")
@@ -245,9 +240,8 @@ def sixth_question(message, theProvider):
         voterlist = user_dict[chatId]
         voterlist.sixth_question = message.text
         myFile = open("inputs.txt", "a+")
-            myFile.write(
-                "from chat Id:" + voterlist.voterId + "\tprovider:" + voterlist.provider + "\tfirst question:" + voterlist.first_question + "\tsecond_question:" + voterlist.second_question + "\tthird_question:" + voterlist.third_question + "\tforth_question:" + voterlist.forth_question + "\tfifth_question:" + voterlist.fifth_question + "\tsixth_question:" + voterlist.sixth_question +"\n")
-            myFile.close()
+        myFile.write("from chat Id:" + voterlist.voterId + "\tprovider:" + voterlist.provider + "\tfirst question:" + voterlist.first_question + "\tsecond_question:" + voterlist.second_question + "\tthird_question:" + voterlist.third_question + "\tforth_question:" + voterlist.forth_question + "\tfifth_question:" + voterlist.fifth_question + "\tsixth_question:" + voterlist.sixth_question +"\n")
+        myFile.close()
         msg = bot.reply_to(message, "با تشکر از شما، نظر شما ثبت شد. ")
         bot.register_next_step_handler(msg, choosing_one)
 
