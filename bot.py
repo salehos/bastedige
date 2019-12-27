@@ -497,59 +497,154 @@ def choosing_providers(message):
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "حامد صالح" :
             photo = open("/home/wssbot/hamedSaleh.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان\n"
+                                                                 " ❄️ حامد صالح \n"
+                                                                 "🔸دانشجوی دکتری در رشته علوم کامپیوتر دانشگاه مریلند \n"
+                                                                 "🔹کارشناسی از دانشگاه صنعتی شریف \n"
+                                                                 "🔸فعالیت در حوزه combinatorial problems in distributed/parallel models به طور ویژه models with sublinear memory \n\n"
+                                                                 "❄️ موضوع ارائه \n"
+                                                                 "Streaming and Massively Parellel Algorithms for Edge Coloring\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "مسعود زمانی" :
             photo = open("/home/wssbot/masodZamani.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_کارگاه‌ـ‌ها\n"
+                                                                 " ❄️ مسعود زمانی \n"
+                                                                 "🔸کارشناسی ارشد امیرکبیر 🔹تحقیق و فعالیت در حوزه آینده‌پژوهی به ویژه \ntechnological singularity"
+                                                                 " 🔸مطالعه و تحقیق future ethical و legal sides of technology \n"
+                                                                 "🔹انجام پروژه های متنوع از ترکیب nanotech، biotech و cognitive scince و همینطور AI و Blockchain \n"
+                                                                 "🔸مدیر آزمایشگاه فناوری‌های پیشرفته در فناپ\n\n"
+                                                                 " 🔺موضوع کارگاه ‌\n"
+                                                                 " Choose to be a Wizard or a Muggle? Journey towards an Exponential world.\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "افرا آبنار" :
             photo = open("/home/wssbot/afraAbnar.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان\n"
+                                                                 " ❄️ افرا آبنار \n"
+                                                                 "🔸کارشناسی از دانشگاه صنعتی شریف\n"
+                                                                 " 🔹کارشناسی ارشد در دانشگاه آلبرتا \n"
+                                                                 "🔸توسعه دهنده نرم‌افزار ارشد در SAP \n"
+                                                                 "🔹فعالیت و تحقیق در حوزه Data Mining\n\n"
+                                                                 " ❄️ موضوع ارائه"
+                                                                 " \nMicroservice Architecture")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "آرش پوردامغانی" :
             photo = open("/home/wssbot/arashPordamqani.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان\n"
+                                                                 " ❄️ آرش پوردامغانی \n"
+                                                                 "🔸دانشجوی دکتری در دانشگاه نیویورک\n"
+                                                                 " 🔹فعالیت و تحقیق در حوزه‌ی Algorithmic Game Theory و مسئله‌های الگوریتمی دیگر\n"
+                                                                 " 🔸کارشناسی مهندسی کامپیوتر از دانشگاه شریف \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " \nAlgorithms and Games in Blockchain: Designing Verifable Systems")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "دکتر امید اعتصامی" :
             photo = open("/home/wssbot/omidEtesami.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان\n"
+                                                                 " ❄️ دکتر امید اعتصامی \n"
+                                                                 "🔸محقق در پژوهشگاه دانش‌های بنیادی\n"
+                                                                 " 🔹کارشناسی و کراشناسی ارشد از دانشگاه شریف\n"
+                                                                 " 🔸دکتر از دانشگاه  California, Berkeley \n"
+                                                                 "🔹پسادکتر از  EPFL, Switzerland 🔸فعالیت در بخش تحقیقاتی مایکروسافت\n"
+                                                                 " 🔹بهترین مقاله در علوم کامپیوتر سال ۲۰۱۴ از دیدگاه ACM Computing Reviews \n"
+                                                                 "🔸فعالت در حوزه استفاده از probability and randomness در علوم کامپیوتر\n\n"
+                                                                 " ❄️ موضوع ارائه\n"
+                                                                 " Computational Concentration of Measure and Robust Learning\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "دکتر میثم علیزاده" :
             photo = open("/home/wssbot/meysamAlizadeh.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان \n"
+                                                                 "️ آرش پوردامغانی \n"
+                                                                 "🔸دانشجوی دکتری در دانشگاه نیویورک \n"
+                                                                 "🔹فعالیت و تحقیق در حوزه‌ی Algorithmic Game Theory و مسئله‌های الگوریتمی دیگر \n"
+                                                                 "🔸کارشناسی مهندسی کامپیوتر از دانشگاه شریف \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " \nAlgorithms and Games in Blockchain: Designing Verifable Systems")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "امین بابادی" :
             photo = open("/home/wssbot/aminBabadi.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان\n"
+                                                                 " ❄️ امین بابادی \n"
+                                                                 "🔸دانشجوی دکتری علوم کامپیوتر در دانشگاه آلتو \n"
+                                                                 "🔹پژوهشگر بازدیدکننده در آزمایشگاه Imager دانشگاه sity of British Columbia, Canada \n"
+                                                                 "🔸فعالیت کنونی در حوزه Development of Efficient and Creative Movement AI for Physically/Biomechanically Simulated Game Characters in Multi-Agent Environments \n"
+                                                                 "🔹۱۰سال تجربه در صنعت بازی‌سازی به ویژه در بخش‌های  AI, animation, gameplay, و physics \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " Animation Synthesis using Machine Learning\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "دکتر سینا دهقانی" :
             photo = open("/home/wssbot/sinaDehghani.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان \n"
+                                                                 "️❄ دکتر سینا دهقانی \n"
+                                                                 "🔸پسادکتر در پژوهشگاه دانش‌های بنیادی \n"
+                                                                 "🔹دکتر علوم کامپیوتر از دانشگاه مریلند\n"
+                                                                 " 🔸فعالیت در حوزه Algorithmic Game Theory و Online Algorithms and Approximation Algorithms و Algorithmic Graph Theory and Social Networks \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " Price of Competition and Dueling Games\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "دکتر محمد محمودی" :
             photo = open("/home/wssbot/mohammadMahmodi.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان \n"
+                                                                 "️❄ دکتر محمد محمودی \n"
+                                                                 "🔸دکتری از دانشگاه پرینستون \n"
+                                                                 "🔹کارشناسی مهندسی کامپیوتر از دانشگاه صنعتی شریف \n"
+                                                                 "🔸فعالیت و تحقیق در حوزه‌ی foundations of Cryptography و تعامل آن با Computational Complexity و Adversarial Learning \n"
+                                                                 "🔹پسادکتری در دانشگاه Cornell \n"
+                                                                 "🔸استادیار در دانشگاه ویرجینیا \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " Registration-Based Encryption\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "شهریار ابراهیمی" :
             photo = open("/home/wssbot/shahriyarEbrahimi.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان \n"
+                                                                 "❄️ شهریار ابراهیمی \n"
+                                                                 "🔸کارشناسی و کارشناسی ارشد از دانشگاه صنعتی شریف \n"
+                                                                 "🔹دانشجوی دکتری مهندسی کامپیوتر در دانشگاه صنعتی شریف \n"
+                                                                 "🔸محقق تمام وقت در آزمایشگاه Secure and Smart Systems (3S) \n"
+                                                                 "🔹محقق مهمان در دانشگاه‌های Mainz (ZDV center) و Hamburg (DKRZ center) \n"
+                                                                 "🔸فعالیت و پژوهش در حوزه‌های Post-quantum cryptography, Lattice-based cryptography, Internet of Things (IoT) و Computer/Network Architecture and Security \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " The Future of Cryptography: a Case-study of Lattice-based ones\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "مهدی صفرنژاد" :
             photo = open("/home/wssbot/mehdiSafarnenjad.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان\n"
+                                                                 " ❄️مهدی صفرنژاد \n"
+                                                                 "🔸دانشجوی دکتری دانشگاه صنعتی شریف 🔹فعالیت و تحقیق در حوزه‌‌ی approximation algorithms for edit distance و مسئله‌های مشابه \n"
+                                                                 "🔸کارشناسی و کارشناسی ارشد از دانشگاه صنعتی شریف \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " \nEdit Distance and LCS: Beyond Worst Case")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "امیر نجفی" :
             photo = open("/home/wssbot/amirNajjafi.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان\n"
+                                                                 " ❄️امیر نجفی \n"
+                                                                 "🔸دانشجوی دکتری مهندسی کامپیوتر در دانشگاه صنعتی شریف \n"
+                                                                 "🔹کارشناسی و کارشناسی ارشد مهندسی برق از دانشگاه صنعتی شریف \n"
+                                                                 "🔸 محقق مهمان در دانشگاه‌های MIT، Harvard، Boston و MA \n"
+                                                                 "🔹فعالیت در حوزه‌های machine learning theory, information theory و bioinformatics\n\n"
+                                                                 " ❄️ موضوع ارائه\n"
+                                                                 " Robustness to Adversarial Perturbations in Learning from Incomplete Data\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "مسلم نوری" :
             photo = open("/home/wssbot/moslemNoori.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان \n"
+                                                                 "❄️دکتر  مسلم نوری\n "
+                                                                 "🔸کارشناسی ارشد و دکتری از دانشگاه آلبرتا\n"
+                                                                 " 🔹کارشناسی مهندسی برق و ریاضیات کاربردی از دانشگاه امیرکبیر\n"
+                                                                 " 🔸 شرکت در دو دوره پسادکتری از دانشگاه‌های بریتیش کلمبیا و آلبرتا\n"
+                                                                 " 🔹دوره بازدید از Nokia Bell Labs \n"
+                                                                 "🔸محقق ارشد در 1QBit 🔹فعالیت در تیم  Microsoft Quantum در ردموند \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " An application of quantum computing in chemistry\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "محمد صالحه" :
             photo = open("/home/wssbot/mohammadSalehe.jpg", 'rb')
-            msg = bot.send_photo(message.chat.id, photo, caption="")
+            msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان \n❄"
+                                                                 "️ محمد صالحه \n"
+                                                                 "🔸دانشجوی دکتر در دانشگاه تورنتو 🔹کارشناسی و کارشناسی ارشد از دانشگاه صنعتی شریف\n"
+                                                                 " 🔸فعالیت در حوزه‌های Distributed Systems, Cloud Computing و Software Systems \n\n"
+                                                                 "❄️ موضوع ارائه\n"
+                                                                 " ‏Cloud Computing, Edge Computing and Beyond\n")
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "بازگشت" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
