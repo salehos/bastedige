@@ -91,7 +91,7 @@ def vote_part(message):
             keyboard.add(contact)
             msg = bot.reply_to(message, "این بخش در حال کامل شدن است، در حال بازگشت به منوی اصلی", reply_markup=keyboard)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text == "نظرسنجی مربوط به هر سخنران" :
+        elif message.text == "نظرسنجی مربوط به هر سخنرانی" :
             zahraNazari = types.KeyboardButton("دکتر زهرا نظری")
             behzadMoshiri = types.KeyboardButton("دکتر بهزاد مشیری")
             ehsanEmamjomezadeh = types.KeyboardButton("دکتر احسان امام جمعه زاده")
