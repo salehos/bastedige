@@ -13,7 +13,7 @@ class voteList:
         self.providerName = providerName
         self.first_question = None
         self.second_question = None
-        self.thirth_question = None
+        self.third_question = None
         self.fourth_question = None
         self.fifth_question = None
         self.sixth_question0 = None
@@ -246,7 +246,7 @@ def sixth_question(message, theProvider):
         voterlist.sixth_question = message.text
         myFile = open("inputs.txt", "a+")
             myFile.write(
-                "from chat Id:" + voterlist.voterId + "\tprovider:" + voterlist.provider + "\tfirst question:" + voterlist.port + "\tsecond_question:" + voterlist.username + "\tthird_question:" + voterlist.password + "\tforth_question:" + voterlist.hard + "\tfifth_question:" + voterlist.country + "\tsixth_question:" + voterlist.sixth_question +"\n")
+                "from chat Id:" + voterlist.voterId + "\tprovider:" + voterlist.provider + "\tfirst question:" + voterlist.first_question + "\tsecond_question:" + voterlist.second_question + "\tthird_question:" + voterlist.third_question + "\tforth_question:" + voterlist.forth_question + "\tfifth_question:" + voterlist.fifth_question + "\tsixth_question:" + voterlist.sixth_question +"\n")
             myFile.close()
         msg = bot.reply_to(message, "با تشکر از شما، نظر شما ثبت شد. ")
         bot.register_next_step_handler(msg, choosing_one)
