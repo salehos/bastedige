@@ -541,7 +541,7 @@ def sixth_question(message):
         voterlist.sixth_question = message.text
         print("check")
         myFile = open("inputs.txt", "a+")
-        myFile.write("from chat Id:" + voterlist.voterId + "\tprovider:" + voterlist.provider + "\tfirst question:" + voterlist.first_question + "\tsecond_question:" + voterlist.second_question + "\tthird_question:" + voterlist.third_question + "\tforth_question:" + voterlist.forth_question + "\tfifth_question:" + voterlist.fifth_question + "\tsixth_question:" + voterlist.sixth_question +"\n")
+        myFile.write("from chat Id:" + voterlist.voterId + "\tprovider:" + voterlist.providerName + "\tfirst question:" + voterlist.first_question + "\tsecond_question:" + voterlist.second_question + "\tthird_question:" + voterlist.third_question + "\tforth_question:" + voterlist.forth_question + "\tfifth_question:" + voterlist.fifth_question + "\tsixth_question:" + voterlist.sixth_question +"\n")
         print("check2")
         myFile.close()
         print("check3")
