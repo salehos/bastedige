@@ -312,23 +312,23 @@ def sixth_question(message, theProvider):
 
 def provider(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    alirezaRezaei = types.KeyboardButton("علیرضا رضایی")
-    behzadMoshiri = types.KeyboardButton("دکتر بهزاد مشیری")
+    alirezaRezaei = types.KeyboardButton("علیرضا رضایی(کارگاه)")
+    behzadMoshiri = types.KeyboardButton("دکتر بهزاد مشیری(ارائه + کارگاه)")
     ehsanEmamjomezadeh = types.KeyboardButton("دکتر احسان امام جمعه زاده")
-    meysamRazavin = types.KeyboardButton("دکتر میثم رضویین")
-    mohammadHeydari = types.KeyboardButton("محمد حیدری")
-    mohammadKhaloei = types.KeyboardButton("محمد خالوئی")
+    meysamRazavin = types.KeyboardButton("دکتر میثم رضویین(ارائه + کارگاه)")
+    mohammadHeydari = types.KeyboardButton("محمد حیدری(کارگاه)")
+    mohammadKhaloei = types.KeyboardButton("محمد خالوئی(کارگاه)")
     mohammadMahdian = types.KeyboardButton("دکتر محمد مهدیان")
     mortezaSaberi = types.KeyboardButton("دکتر مرتضی صابری")
-    mozhganMirzaei = types.KeyboardButton("مژگان میرزایی")
-    nedaSoltani = types.KeyboardButton("ندا سلطانی")
+    mozhganMirzaei = types.KeyboardButton("مژگان میرزایی(ارائه + کارگاه)")
+    nedaSoltani = types.KeyboardButton("ندا سلطانی(کارگاه)")
     rezaMohammadi = types.KeyboardButton("رضا محمدی")
     salmanAbolfathbeigi = types.KeyboardButton("دکتر سلمان ابوالفتح بیگی")
     siminOreei = types.KeyboardButton("سیمین اورعی")
     zahraNazari = types.KeyboardButton("دکتر زهرا نظری")
 
     hamedSaleh =  types.KeyboardButton("حامد صالح")
-    masodZamani = types.KeyboardButton("مسعود زمانی")
+    masodZamani = types.KeyboardButton("مسعود زمانی(کارگاه)")
     afraAbnar = types.KeyboardButton("افرا آبنار")
     arashPordamqani = types.KeyboardButton("آرش پوردامغانی")
     omidEtesami = types.KeyboardButton("دکتر امید اعتصامی")
@@ -385,7 +385,7 @@ def provider(message):
 
 def choosing_providers(message):
     try:
-        if message.text == "دکتر بهزاد مشیری" :
+        if message.text == "دکتر بهزاد مشیری(ارائه + کارگاه)" :
             photo = open("/home/wssbot/behzadMoshiri.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo, caption= "#معرفی‌_سخنرانان \n"
                                                             "#معرفی‌ـکارگاه‌ـ‌ها\n"
@@ -415,7 +415,7 @@ def choosing_providers(message):
                                                            "❄️ موضوع ارائه \n"
                                                            "\nOnline Learning")
             bot.register_next_step_handler(msg, choosing_providers)
-        elif message.text == "علیرضا رضایی" :
+        elif message.text == "علیرضا رضایی(کارگاه)" :
             photo = open("/home/wssbot/alirezaRezaei.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌ـکارگاه‌ـ‌ها ❄️ \n"
                                                            "علیرضا رضایی \n"
@@ -425,7 +425,7 @@ def choosing_providers(message):
                                                            "🔺موضوع کارگاه \n"
                                                            "‌ Modeling Diversity in Machine Learning Using Determinantal Point Processes\n")
             bot.register_next_step_handler(msg, choosing_providers)
-        elif message.text == "دکتر میثم رضویین" :
+        elif message.text == "دکتر میثم رضویین(ارائه + کارگاه)" :
             photo = open("/home/wssbot/meysamRazavin.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان ❄️ \n"
                                                            "دکتر میثم رضویین \n"
@@ -437,7 +437,7 @@ def choosing_providers(message):
                                                            "❄️ موضوع ارائه\n"
                                                            " ‏Learning via Non-Convex Min-Max Games\n")
             bot.register_next_step_handler(msg, choosing_providers)
-        elif message.text == "محمد حیدری" :
+        elif message.text == "محمد حیدری(کارگاه)" :
             photo = open("/home/wssbot/mohammadHeydari.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌ـکارگاه‌ـ‌ها\n"
                                                            " ❄️ محمد حیدری \n"
@@ -447,7 +447,7 @@ def choosing_providers(message):
                                                            "🔺موضوع کارگاه\n"
                                                            " ‌ Discovering Latent Patterns in Academic Collaboration Network based on Community Detection Approach\n")
             bot.register_next_step_handler(msg, choosing_providers)
-        elif message.text == "محمد خالوئی" :
+        elif message.text == "محمد خالوئی(کارگاه)" :
             photo = open("/home/wssbot/mohammadKhaloei.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌ـکارگاه‌ـ‌ها \n"
                                                            "❄️ محمد خالوئی \n"
@@ -482,7 +482,7 @@ def choosing_providers(message):
                                                            "️❄ موضوع ارائه\n"
                                                            " \nPersonalized Assortment Optimization for Online Retailer Considering Risk of Customers Churning")
             bot.register_next_step_handler(msg, choosing_providers)
-        elif message.text == "مژگان میرزایی" :
+        elif message.text == "مژگان میرزایی(ارائه + کارگاه)" :
             photo = open("/home/wssbot/mozhganMirzaei.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_سخنرانان #معرفی‌ـکارگاه‌ـ‌ها\n"
                                                            " ❄️ مژگان میرزایی \n"
@@ -493,7 +493,7 @@ def choosing_providers(message):
                                                            "🔺موضوع کارگاه \n"
                                                            "‌ \nIncidence Theorem and Its Applications")
             bot.register_next_step_handler(msg, choosing_providers)
-        elif message.text == "ندا سلطانی" :
+        elif message.text == "ندا سلطانی(کارگاه)" :
             photo = open("/home/wssbot/nedaSoltani.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌ـکارگاه‌ـ‌ها\n"
                                                            " ❄️ ندا سلطانی \n"
@@ -559,7 +559,7 @@ def choosing_providers(message):
                                                                  "❄️ موضوع ارائه \n"
                                                                  "Streaming and Massively Parellel Algorithms for Edge Coloring\n")
             bot.register_next_step_handler(msg, choosing_providers)
-        elif message.text == "مسعود زمانی" :
+        elif message.text == "مسعود زمانی(کارگاه)" :
             photo = open("/home/wssbot/masodZamani.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo, caption="#معرفی‌_کارگاه‌ـ‌ها\n"
                                                                  " ❄️ مسعود زمانی \n"
