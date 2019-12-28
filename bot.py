@@ -103,27 +103,27 @@ def guidance(message):
         if message.text == "نقشه دانشگاه" :
             photo = open("/home/wssbot/kuroky.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo)
-            bot.register_next_step_handler(msg, guidance)
+            bot.register_next_step_handler(msg, guidance, reply_markup=keyboard)
         elif message.text == "گیف در جنوبی به دانشکده" :
             audio = open("/home/wssbot/dareJonobBeDaneshkadeh.gif.mp4", 'rb')
             msg = bot.send_video(message.chat.id, audio)
-            bot.register_next_step_handler(msg, guidance)
+            bot.register_next_step_handler(msg, guidance, reply_markup=keyboard)
         elif message.text ==  "گیف در شمالی به دانشکده" :
             audio = open("/home/wssbot/dareShomaliBeDaneshkade.gif.mp4", 'rb')
             msg = bot.send_video(message.chat.id, audio)
-            bot.register_next_step_handler(msg, guidance)
+            bot.register_next_step_handler(msg, guidance, reply_markup=keyboard)
         elif message.text == "گیف در شمالی به تالارها" :
             audio = open("/home/wssbot/dareShomaliBeTalar.gif.mp4", 'rb')
             msg = bot.send_video(message.chat.id, audio)
-            bot.register_next_step_handler(msg, guidance)
+            bot.register_next_step_handler(msg, guidance, reply_markup=keyboard)
         elif message.text ==  "گیف تالارها به سلف":
             audio = open("/home/wssbot/talarBeSelf.gi.mp4f", 'rb')
             msg = bot.send_video(message.chat.id, audio)
-            bot.register_next_step_handler(msg, guidance)
+            bot.register_next_step_handler(msg, guidance, reply_markup=keyboard)
         elif message.text ==  "گیف در جنوبی به تالارها":
             audio = open("/home/wssbot/dareJonobiBeTalar.gif.mp4", 'rb')
             msg = bot.send_video(message.chat.id, audio)
-            bot.register_next_step_handler(msg, guidance)
+            bot.register_next_step_handler(msg, guidance, reply_markup=keyboard)
         elif message.text == "بازگشت":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
