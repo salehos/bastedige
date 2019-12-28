@@ -74,8 +74,71 @@ def choosing_one(message):
             bot.register_next_step_handler(msg , choosing_one)
 
         elif message.text == "آشنایی با ارائه دهنده ها":
-            msg = bot.send_message(message.chat.id, "فردی را انتخاب کنید")
-            bot.register_next_step_handler(msg, provider)
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+            alirezaRezaei = types.KeyboardButton("علیرضا رضایی(کارگاه)")
+            behzadMoshiri = types.KeyboardButton("دکتر بهزاد مشیری(ارائه + کارگاه)")
+            ehsanEmamjomezadeh = types.KeyboardButton("دکتر احسان امام جمعه زاده")
+            meysamRazavin = types.KeyboardButton("دکتر میثم رضویین(ارائه + کارگاه)")
+            mohammadHeydari = types.KeyboardButton("محمد حیدری(کارگاه)")
+            mohammadKhaloei = types.KeyboardButton("محمد خالوئی(کارگاه)")
+            mohammadMahdian = types.KeyboardButton("دکتر محمد مهدیان")
+            mortezaSaberi = types.KeyboardButton("دکتر مرتضی صابری")
+            mozhganMirzaei = types.KeyboardButton("مژگان میرزایی(ارائه + کارگاه)")
+            nedaSoltani = types.KeyboardButton("ندا سلطانی(کارگاه)")
+            rezaMohammadi = types.KeyboardButton("رضا محمدی")
+            salmanAbolfathbeigi = types.KeyboardButton("دکتر سلمان ابوالفتح بیگی")
+            siminOreei = types.KeyboardButton("سیمین اورعی")
+            zahraNazari = types.KeyboardButton("دکتر زهرا نظری")
+
+            hamedSaleh =  types.KeyboardButton("حامد صالح")
+            masodZamani = types.KeyboardButton("مسعود زمانی(کارگاه)")
+            afraAbnar = types.KeyboardButton("افرا آبنار")
+            arashPordamqani = types.KeyboardButton("آرش پوردامغانی")
+            omidEtesami = types.KeyboardButton("دکتر امید اعتصامی")
+            meysamAlizadeh = types.KeyboardButton("دکتر میثم علیزاده")
+            aminBabadi = types.KeyboardButton("امین بابادی")
+            sinaDehghani = types.KeyboardButton("دکتر سینا دهقانی")
+            mohammadMahmodi = types.KeyboardButton("دکتر محمد محمودی")
+            shahriyarEbrahimi = types.KeyboardButton("شهریار ابراهیمی")
+            mehdiSafarnenjad = types.KeyboardButton("مهدی صفرنژاد")
+            amirNajjafi = types.KeyboardButton("امیر نجفی")
+            moslemNoori = types.KeyboardButton("مسلم نوری")
+            mohammadSalehe = types.KeyboardButton("محمد صالحه")
+
+
+            back = types.KeyboardButton("بازگشت")
+            keyboard.add(alirezaRezaei)
+            keyboard.add(behzadMoshiri)
+            keyboard.add(ehsanEmamjomezadeh)
+            keyboard.add(meysamRazavin)
+            keyboard.add(mohammadHeydari)
+            keyboard.add(mohammadKhaloei)
+            keyboard.add(mohammadMahdian)
+            keyboard.add(mortezaSaberi)
+            keyboard.add(mozhganMirzaei)
+            keyboard.add(nedaSoltani)
+            keyboard.add(rezaMohammadi)
+            keyboard.add(salmanAbolfathbeigi)
+            keyboard.add(siminOreei)
+            keyboard.add(zahraNazari)
+
+            keyboard.add(hamedSaleh)
+            keyboard.add(masodZamani)
+            keyboard.add(afraAbnar)
+            keyboard.add(arashPordamqani)
+            keyboard.add(omidEtesami)
+            keyboard.add(meysamAlizadeh)
+            keyboard.add(aminBabadi)
+            keyboard.add(sinaDehghani)
+            keyboard.add(mohammadMahmodi)
+            keyboard.add(shahriyarEbrahimi)
+            keyboard.add(mehdiSafarnenjad)
+            keyboard.add(amirNajjafi)
+            keyboard.add(moslemNoori)
+            keyboard.add(mohammadSalehe)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "فردی را انتخاب کنید", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, choosing_providers)
 
         elif message.text == "نظرسنجی":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
@@ -234,7 +297,8 @@ def vote_for_speakers(message):
 
 def first_question(message, theProvider):
     try:
-        if message.text == "1" or "2" or "3" or "4" or "5":
+        accepted = ["1", "2", "3", "4", "5"]
+        if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.first_question = message.text
@@ -251,7 +315,8 @@ def first_question(message, theProvider):
 
 def second_question(message, theProvider):
     try:
-        if message.text == "1" or "2" or "3" or "4" or "5":
+        accepted = ["1", "2", "3", "4", "5"]
+        if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.second_question = message.text
@@ -266,7 +331,8 @@ def second_question(message, theProvider):
 
 def third_question(message, theProvider):
     try:
-        if message.text == "1" or "2" or "3" or "4" or "5":
+        accepted = ["1", "2", "3", "4", "5"]
+        if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.third_question = message.text
@@ -285,7 +351,8 @@ def third_question(message, theProvider):
 
 def fourth_question(message, theProvider):
     try:
-        if message.text == "بله" or "خیر":
+        accepted = ["بله" , "خیر"]
+        if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.forth_question = message.text
@@ -304,7 +371,8 @@ def fourth_question(message, theProvider):
 
 def fifth_question(message, theProvider):
     try:
-        if message.text == "1" or "2" or "3" or "4" or "5":
+        accepted = ["1", "2", "3", "4", "5"]
+        if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.fifth_question = message.text
@@ -329,78 +397,7 @@ def sixth_question(message, theProvider):
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
         bot.register_next_step_handler(msg, sixth_question)
 
-def provider(message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    alirezaRezaei = types.KeyboardButton("علیرضا رضایی(کارگاه)")
-    behzadMoshiri = types.KeyboardButton("دکتر بهزاد مشیری(ارائه + کارگاه)")
-    ehsanEmamjomezadeh = types.KeyboardButton("دکتر احسان امام جمعه زاده")
-    meysamRazavin = types.KeyboardButton("دکتر میثم رضویین(ارائه + کارگاه)")
-    mohammadHeydari = types.KeyboardButton("محمد حیدری(کارگاه)")
-    mohammadKhaloei = types.KeyboardButton("محمد خالوئی(کارگاه)")
-    mohammadMahdian = types.KeyboardButton("دکتر محمد مهدیان")
-    mortezaSaberi = types.KeyboardButton("دکتر مرتضی صابری")
-    mozhganMirzaei = types.KeyboardButton("مژگان میرزایی(ارائه + کارگاه)")
-    nedaSoltani = types.KeyboardButton("ندا سلطانی(کارگاه)")
-    rezaMohammadi = types.KeyboardButton("رضا محمدی")
-    salmanAbolfathbeigi = types.KeyboardButton("دکتر سلمان ابوالفتح بیگی")
-    siminOreei = types.KeyboardButton("سیمین اورعی")
-    zahraNazari = types.KeyboardButton("دکتر زهرا نظری")
 
-    hamedSaleh =  types.KeyboardButton("حامد صالح")
-    masodZamani = types.KeyboardButton("مسعود زمانی(کارگاه)")
-    afraAbnar = types.KeyboardButton("افرا آبنار")
-    arashPordamqani = types.KeyboardButton("آرش پوردامغانی")
-    omidEtesami = types.KeyboardButton("دکتر امید اعتصامی")
-    meysamAlizadeh = types.KeyboardButton("دکتر میثم علیزاده")
-    aminBabadi = types.KeyboardButton("امین بابادی")
-    sinaDehghani = types.KeyboardButton("دکتر سینا دهقانی")
-    mohammadMahmodi = types.KeyboardButton("دکتر محمد محمودی")
-    shahriyarEbrahimi = types.KeyboardButton("شهریار ابراهیمی")
-    mehdiSafarnenjad = types.KeyboardButton("مهدی صفرنژاد")
-    amirNajjafi = types.KeyboardButton("امیر نجفی")
-    moslemNoori = types.KeyboardButton("مسلم نوری")
-    mohammadSalehe = types.KeyboardButton("محمد صالحه")
-
-
-    back = types.KeyboardButton("بازگشت")
-    keyboard.add(alirezaRezaei)
-    keyboard.add(behzadMoshiri)
-    keyboard.add(ehsanEmamjomezadeh)
-    keyboard.add(meysamRazavin)
-    keyboard.add(mohammadHeydari)
-    keyboard.add(mohammadKhaloei)
-    keyboard.add(mohammadMahdian)
-    keyboard.add(mortezaSaberi)
-    keyboard.add(mozhganMirzaei)
-    keyboard.add(nedaSoltani)
-    keyboard.add(rezaMohammadi)
-    keyboard.add(salmanAbolfathbeigi)
-    keyboard.add(siminOreei)
-    keyboard.add(zahraNazari)
-
-    keyboard.add(hamedSaleh)
-    keyboard.add(masodZamani)
-    keyboard.add(afraAbnar)
-    keyboard.add(arashPordamqani)
-    keyboard.add(omidEtesami)
-    keyboard.add(meysamAlizadeh)
-    keyboard.add(aminBabadi)
-    keyboard.add(sinaDehghani)
-    keyboard.add(mohammadMahmodi)
-    keyboard.add(shahriyarEbrahimi)
-    keyboard.add(mehdiSafarnenjad)
-    keyboard.add(amirNajjafi)
-    keyboard.add(moslemNoori)
-    keyboard.add(mohammadSalehe)
-    keyboard.add(back)
-
-
-
-
-
-
-    msg = bot.reply_to(message, 'یکی از گزینه ها را انتخاب کنید.', reply_markup=keyboard)
-    bot.register_next_step_handler(msg, choosing_providers)
 
 def choosing_providers(message):
     try:
@@ -722,19 +719,19 @@ def choosing_providers(message):
         elif message.text == "بازگشت" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
-            tables = types.KeyboardButton("جدول زمان بندی سمینار ها و کارگاه ها")
+            tables = types.KeyboardButton("زمان بندی کارگاه ها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
-            contact = types.KeyboardButton("ارتباط با ادمین")
             sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
+            contact = types.KeyboardButton("ارتباط با ادمین")
             location = types.KeyboardButton("مکان دانشگاه")
             keyboard.add(location)
-            keyboard.add(sokhanraniTime)
             keyboard.add(universityMap)
             keyboard.add(tables)
             keyboard.add(introduce)
             keyboard.add(vote)
             keyboard.add(contact)
+            keyboard.add(sokhanraniTime)
             msg = bot.reply_to(message, 'در حال بازگشت به منوی اصلی.', reply_markup=keyboard)
             bot.register_next_step_handler(msg, choosing_one)
         else:
