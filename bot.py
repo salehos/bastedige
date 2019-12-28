@@ -100,6 +100,7 @@ def choosing_one(message):
 
 def guidance(message):
     try:
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         if message.text == "نقشه دانشگاه" :
             photo = open("/home/wssbot/kuroky.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo)
