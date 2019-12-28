@@ -30,12 +30,16 @@ def first_step(message):
     tables = types.KeyboardButton("زمان بندی کارگاه‌ها")
     introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
     vote = types.KeyboardButton("نظرسنجی")
+    sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
     contact = types.KeyboardButton("ارتباط با ادمین")
+    location = types.KeyboardButton("مکان دانشگاه")
+    keyboard.add(location)
     keyboard.add(universityMap)
     keyboard.add(tables)
     keyboard.add(introduce)
     keyboard.add(vote)
     keyboard.add(contact)
+    keyboard.add(sokhanraniTime)
     msg = bot.reply_to(message, 'خوش آمدید. چه کمکی از دست من برمیاد؟', reply_markup=keyboard)
     bot.register_next_step_handler(msg, choosing_one)
 
@@ -64,6 +68,11 @@ def choosing_one(message):
             photo = open("/home/wssbot/kargahHa.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo)
             bot.register_next_step_handler(msg, choosing_one)
+
+        elif message.text == "جدول زمانی سخنرانی ها":
+            msg = bot.reply_to(message, "در دست تعمیر . . .", reply_markup=keyboard)
+            bot.register_next_step_handler(msg , choosing_one)
+
         elif message.text == "آشنایی با ارائه دهنده ها":
             msg = bot.send_message(message.chat.id, "فردی را انتخاب کنید")
             bot.register_next_step_handler(msg, provider)
@@ -76,7 +85,9 @@ def choosing_one(message):
             keyboard.add(speakersvote)
             msg = bot.reply_to(message, " به بخش نظرسنجی خوش آمدید، لطفا یکی از انواع نظرسنجی را انتخاب کنید...", reply_markup=keyboard)
             bot.register_next_step_handler(msg, vote_part)
-
+        elif message.text == "مکان دانشگاه":
+            msg = bot.send_location(message.chat_id, 35.700413, 51.352248)
+            bot.register_next_step_handler(msg, choosing_one)
         elif message.text == "ارتباط با ادمین":
             msg = bot.send_message(message.chat.id, "لطفا با @atenasaghi تماس بگیرید")
             bot.register_next_step_handler(msg, choosing_one)
@@ -94,24 +105,24 @@ def guidance(message):
             msg = bot.send_photo(message.chat.id, photo)
             bot.register_next_step_handler(msg, choosing_one)
         elif message.text = "گیف در جنوبی به دانشکده" :
-            photo = open("/home/wssbot/dareJonobBeDaneshkadeh.gif", 'rb')
-            msg = bot.send_photo(message.chat.id, photo)
+            audio = open("/home/wssbot/dareJonobBeDaneshkadeh.gif.mp4", 'rb')
+            msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
         elif message.text =  "گیف در شمالی به دانشکده" :
-            photo = open("/home/wssbot/dareShomaliBeDaneshkade.gif", 'rb')
-            msg = bot.send_photo(message.chat.id, photo)
+            audio = open("/home/wssbot/dareShomaliBeDaneshkade.gif.mp4", 'rb')
+            msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
         elif message.text = "گیف در شمالی به تالارها" :
-            photo = open("/home/wssbot/dareShomaliBeTalar.gif", 'rb')
-            msg = bot.send_photo(message.chat.id, photo)
+            audio = open("/home/wssbot/dareShomaliBeTalar.gif.mp4", 'rb')
+            msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
         elif message.text =  "گیف تالارها به سلف":
-            photo = open("/home/wssbot/talarBeSelf.gif", 'rb')
-            msg = bot.send_photo(message.chat.id, photo)
+            audio = open("/home/wssbot/talarBeSelf.gi.mp4f", 'rb')
+            msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
         elif message.text =  "گیف در جنوبی به تالارها":
-            photo = open("/home/wssbot/dareJonobiBeTalar.gif", 'rb')
-            msg = bot.send_photo(message.chat.id, photo)
+            audio = open("/home/wssbot/dareJonobiBeTalar.gif.mp4", 'rb')
+            msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
 
     except Exception :
@@ -128,6 +139,10 @@ def vote_part(message):
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
             contact = types.KeyboardButton("ارتباط با ادمین")
+            sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
+            location = types.KeyboardButton("مکان دانشگاه")
+            keyboard.add(location)
+            keyboard.add(sokhanraniTime)
             keyboard.add(universityMap)
             keyboard.add(tables)
             keyboard.add(introduce)
@@ -691,6 +706,10 @@ def choosing_providers(message):
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
             contact = types.KeyboardButton("ارتباط با ادمین")
+            sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
+            location = types.KeyboardButton("مکان دانشگاه")
+            keyboard.add(location)
+            keyboard.add(sokhanraniTime)
             keyboard.add(universityMap)
             keyboard.add(tables)
             keyboard.add(introduce)
