@@ -251,6 +251,7 @@ def vote_part(message):
 
 def vote_for_speakers(message):
     try:
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         chatId = message.chat.id
         print("check")
         providerName = message.text
@@ -262,6 +263,7 @@ def vote_for_speakers(message):
         voterlist.providerName = providerName
         print("check")
         if message.text == "دکتر زهرا نظری" :
+            print("check")
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -272,6 +274,7 @@ def vote_for_speakers(message):
             keyboard.add(third)
             keyboard.add(fourth)
             keyboard.add(fifth)
+            print("check")
             msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
         elif message.text == "دکتر بهزاد مشیری" :
