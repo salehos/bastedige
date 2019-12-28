@@ -118,7 +118,7 @@ def guidance(message):
             msg = bot.send_video(message.chat.id, audio, reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
         elif message.text ==  "گیف تالارها به سلف":
-            audio = open("/home/wssbot/talarBeSelf.gi.mp4f", 'rb')
+            audio = open("/home/wssbot/talarBeSelf.gif.mp4", 'rb')
             msg = bot.send_video(message.chat.id, audio, reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
         elif message.text ==  "گیف در جنوبی به تالارها":
