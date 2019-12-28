@@ -252,10 +252,15 @@ def vote_part(message):
 def vote_for_speakers(message):
     try:
         chatId = message.chat.id
+        print("check")
         providerName = message.text
+        print("check")
         voterlist = voterList(chatId)
+        print("check")
         user_dict[chatId] = voterlist
+        print("check")
         voterlist.providerName = providerName
+        print("check")
         if message.text == "دکتر زهرا نظری" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
