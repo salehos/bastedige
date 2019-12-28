@@ -8,7 +8,7 @@ user_dict = {}
 pm_dict = {}
 
 class voteList:
-    def __init__(self, voterId , providerName):
+    def __init__(self, voterId):
         self.voterId = voterId
         self.providerName = providerName
         self.first_question = None
@@ -173,7 +173,7 @@ def vote_for_speakers(message):
     try:
         chatId = message.chat.id
         providerName = message.text
-        votelist = voteList(chatId, providerName)
+        votelist = voteList(chatId)
         user_dict[chatId] = votelist
         if message.text == "دکتر زهرا نظری" :
             msg = bot.reply_to(message, "۱. ارائه کارگاه مناسب و قابل فهم")
@@ -251,6 +251,7 @@ def third_question(message, theProvider):
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.third_question = message.text
+            voterlist.chatId
             msg = bot.reply_to(message, "۴. آیا موضوع گفته شده با محتوای کارگاه تناسب داشت؟")
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
