@@ -16,7 +16,7 @@ class voterList:
         self.third_question = None
         self.fourth_question = None
         self.fifth_question = None
-        self.sixth_question0 = None
+        self.sixth_question = None
 
 class Pm:
     def __init__(self, id):
