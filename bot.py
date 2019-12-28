@@ -255,8 +255,8 @@ def vote_for_speakers(message):
         chatId = message.chat.id
         print("check1")
         providerName = message.text
-        votelist = voteList(chatId)
-        user_dict[chatId] = votelist
+        voterlist = voterList(chatId)
+        user_dict[chatId] = voterlist
         voterlist.providerName = providerName
         print("check1")
         if message.text == "دکتر زهرا نظری" :
