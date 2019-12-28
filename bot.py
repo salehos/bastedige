@@ -100,27 +100,27 @@ def choosing_one(message):
 
 def guidance(message):
     try:
-        if message.text = "نقشه دانشگاه" :
+        if message.text == "نقشه دانشگاه" :
             photo = open("/home/wssbot/kuroky.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text = "گیف در جنوبی به دانشکده" :
+        elif message.text == "گیف در جنوبی به دانشکده" :
             audio = open("/home/wssbot/dareJonobBeDaneshkadeh.gif.mp4", 'rb')
             msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text =  "گیف در شمالی به دانشکده" :
+        elif message.text ==  "گیف در شمالی به دانشکده" :
             audio = open("/home/wssbot/dareShomaliBeDaneshkade.gif.mp4", 'rb')
             msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text = "گیف در شمالی به تالارها" :
+        elif message.text == "گیف در شمالی به تالارها" :
             audio = open("/home/wssbot/dareShomaliBeTalar.gif.mp4", 'rb')
             msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text =  "گیف تالارها به سلف":
+        elif message.text ==  "گیف تالارها به سلف":
             audio = open("/home/wssbot/talarBeSelf.gi.mp4f", 'rb')
             msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text =  "گیف در جنوبی به تالارها":
+        elif message.text ==  "گیف در جنوبی به تالارها":
             audio = open("/home/wssbot/dareJonobiBeTalar.gif.mp4", 'rb')
             msg = bot.send_audio(message.chat.id, audio)
             bot.register_next_step_handler(msg, choosing_one)
