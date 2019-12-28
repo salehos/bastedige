@@ -7,7 +7,7 @@ bot = telebot.TeleBot(bot_token)
 user_dict = {}
 pm_dict = {}
 
-class voteList:
+class voterList:
     def __init__(self, voterId):
         self.voterId = voterId
         self.providerName = None
@@ -240,7 +240,6 @@ def vote_part(message):
             keyboard.add(ehsanEmamjomezadeh)
             keyboard.add(mohammadHeydari)
             keyboard.add(zahraNazari)
-            print("check1")
             msg = bot.send_message(message.chat.id, "لطفا فرد مورد نظر خود را انتخاب کنید", reply_markup=keyboard)
             bot.register_next_step_handler(msg, vote_for_speakers)
 
@@ -253,15 +252,10 @@ def vote_part(message):
 def vote_for_speakers(message):
     try:
         chatId = message.chat.id
-        print("check1")
         providerName = message.text
-        print("check1")
         voterlist = voterList(chatId)
-        print("check1")
         user_dict[chatId] = voterlist
-        print("check1")
         voterlist.providerName = providerName
-        print("check1")
         if message.text == "دکتر زهرا نظری" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
