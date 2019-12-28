@@ -539,9 +539,28 @@ def sixth_question(message):
         chatId = message.chat.id
         voterlist = user_dict[chatId]
         voterlist.sixth_question = message.text
+        print("check")
         myFile = open("inputs.txt", "a+")
         myFile.write("from chat Id:" + voterlist.voterId + "\tprovider:" + voterlist.provider + "\tfirst question:" + voterlist.first_question + "\tsecond_question:" + voterlist.second_question + "\tthird_question:" + voterlist.third_question + "\tforth_question:" + voterlist.forth_question + "\tfifth_question:" + voterlist.fifth_question + "\tsixth_question:" + voterlist.sixth_question +"\n")
+        print("check2")
         myFile.close()
+        print("check3")
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+        universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
+        tables = types.KeyboardButton("زمان بندی کارگاه ها")
+        introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
+        vote = types.KeyboardButton("نظرسنجی")
+        contact = types.KeyboardButton("ارتباط با ادمین")
+        sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
+        location = types.KeyboardButton("مکان دانشگاه")
+        keyboard.add(location)
+        keyboard.add(sokhanraniTime)
+        keyboard.add(universityMap)
+        keyboard.add(tables)
+        keyboard.add(introduce)
+        keyboard.add(vote)
+        keyboard.add(contact)
+        print("check4")
         msg = bot.send_message(message.chat.id, "با تشکر از شما، نظر شما ثبت شد. ", reply_markup=keyboard)
         bot.register_next_step_handler(msg, choosing_one)
 
