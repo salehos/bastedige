@@ -27,7 +27,7 @@ class Pm:
 def first_step(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
-    tables = types.KeyboardButton("زمان بندی کارگاه‌ها")
+    tables = types.KeyboardButton("زمان بندی کارگاه ها")
     introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
     vote = types.KeyboardButton("نظرسنجی")
     sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
@@ -64,7 +64,7 @@ def choosing_one(message):
             keyboard.add(back)
             msg = bot.send_message(message.chat.id,"بخش مورد نظر خود را انتخاب کنید",  reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
-        elif message.text == "زمان بندی کارگاه‌ها":
+        elif message.text == "زمان بندی کارگاه ها":
             photo = open("/home/wssbot/kargahHa.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo)
             bot.register_next_step_handler(msg, choosing_one)
@@ -128,7 +128,7 @@ def guidance(message):
         elif message.text == "بازگشت":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
-            tables = types.KeyboardButton("زمان بندی کارگاها")
+            tables = types.KeyboardButton("زمان بندی کارگاه ها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
             contact = types.KeyboardButton("ارتباط با ادمین")
@@ -154,7 +154,7 @@ def vote_part(message):
         if message.text == "نظرسنجی کلی رویداد" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
-            tables = types.KeyboardButton("زمان بندی کارگاها")
+            tables = types.KeyboardButton("زمان بندی کارگاه ها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
             contact = types.KeyboardButton("ارتباط با ادمین")
