@@ -26,7 +26,7 @@ class Pm:
 @bot.message_handler(commands=['start'])
 def first_step(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    universityMap = types.KeyboardButton("راهنمایی مکان‌های دانشگاه")
+    universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
     tables = types.KeyboardButton("زمان بندی کارگاه‌ها")
     introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
     vote = types.KeyboardButton("نظرسنجی")
@@ -46,9 +46,7 @@ def first_step(message):
 
 def choosing_one(message):
     try:
-        if message.text == "راهنمایی مکان‌های دانشگاه":
-            keyboard = types.ReplyKeyboardMarkup()
-            keyboard = types.ReplyKeyboardRemove(selective=False)
+        if message.text == "راهنمایی مکان های دانشگاه":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             universityMap = types.KeyboardButton("نقشه دانشگاه")
             dareJonobBeDaneshkadeh = types.KeyboardButton("گیف در جنوبی به دانشکده")
@@ -62,7 +60,7 @@ def choosing_one(message):
             keyboard.add(dareShomaliBeTalar)
             keyboard.add(talarBeSelf)
             keyboard.add(dareJonobiBeTalar)
-            msg = bot.send_photo(message.chat.id, photo)
+            msg = bot.send_message(message.chat.id,"بخش مورد نظر خود را انتخاب کنید",  reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
         elif message.text == "زمان بندی کارگاه‌ها":
             photo = open("/home/wssbot/kargahHa.jpg", 'rb')
@@ -134,7 +132,7 @@ def vote_part(message):
     try:
         if message.text == "نظرسنجی کلی رویداد" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-            universityMap = types.KeyboardButton("راهنمایی مکان‌های دانشگاه")
+            universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
             tables = types.KeyboardButton("زمان بندی کارگاها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
@@ -702,7 +700,7 @@ def choosing_providers(message):
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "بازگشت" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-            universityMap = types.KeyboardButton("راهنمایی مکان‌های دانشگاه")
+            universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
             tables = types.KeyboardButton("جدول زمان بندی سمینار ها و کارگاه ها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
