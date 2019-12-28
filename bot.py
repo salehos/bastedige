@@ -70,7 +70,7 @@ def choosing_one(message):
             bot.register_next_step_handler(msg, choosing_one)
 
         elif message.text == "جدول زمانی سخنرانی ها":
-            msg = bot.reply_to(message, "در دست تعمیر . . .", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, "در دست تعمیر . . .", reply_markup=keyboard)
             bot.register_next_step_handler(msg , choosing_one)
 
         elif message.text == "آشنایی با ارائه دهنده ها":
@@ -83,10 +83,10 @@ def choosing_one(message):
             speakersvote = types.KeyboardButton("نظرسنجی مربوط به هر سخنرانی")
             keyboard.add(seminarvote)
             keyboard.add(speakersvote)
-            msg = bot.reply_to(message, " به بخش نظرسنجی خوش آمدید، لطفا یکی از انواع نظرسنجی را انتخاب کنید...", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, " به بخش نظرسنجی خوش آمدید، لطفا یکی از انواع نظرسنجی را انتخاب کنید...", reply_markup=keyboard)
             bot.register_next_step_handler(msg, vote_part)
         elif message.text == "مکان دانشگاه":
-            msg = bot.send_location(message.chat_id, 35.700413, 51.352248)
+            msg = bot.send_location(message.chat.id, 35.700413, 51.352248)
             bot.register_next_step_handler(msg, choosing_one)
         elif message.text == "ارتباط با ادمین":
             msg = bot.send_message(message.chat.id, "لطفا با @atenasaghi تماس بگیرید")
@@ -94,7 +94,7 @@ def choosing_one(message):
         else:
             raise Exception
     except Exception:
-        msg = bot.reply_to(message, "دستور شما جزء دستورات این بات نیست. مجددا تلاش کنید.")
+        msg = bot.send_message(message.chat.id, "دستور شما جزء دستورات این بات نیست. مجددا تلاش کنید.")
         bot.register_next_step_handler(msg, choosing_one)
 
 
