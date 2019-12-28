@@ -10,7 +10,7 @@ pm_dict = {}
 class voteList:
     def __init__(self, voterId):
         self.voterId = voterId
-        self.providerName = providerName
+        self.providerName = None
         self.first_question = None
         self.second_question = None
         self.third_question = None
@@ -240,6 +240,7 @@ def vote_part(message):
             keyboard.add(ehsanEmamjomezadeh)
             keyboard.add(mohammadHeydari)
             keyboard.add(zahraNazari)
+            print("check1")
             msg = bot.send_message(message.chat.id, "لطفا فرد مورد نظر خود را انتخاب کنید", reply_markup=keyboard)
             bot.register_next_step_handler(msg, vote_for_speakers)
 
@@ -252,40 +253,63 @@ def vote_part(message):
 def vote_for_speakers(message):
     try:
         chatId = message.chat.id
+        print("check1")
         providerName = message.text
         votelist = voteList(chatId)
         user_dict[chatId] = votelist
+        voterlist.providerName = providerName
+        print("check1")
         if message.text == "دکتر زهرا نظری" :
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
             fourth = types.KeyboardButton("4")
             fifth = types.KeyboardButton("5")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
         elif message.text == "دکتر بهزاد مشیری" :
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
             fourth = types.KeyboardButton("4")
             fifth = types.KeyboardButton("5")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
         elif message.text == "دکتر احسان امام جمعه زاده" :
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
             fourth = types.KeyboardButton("4")
             fifth = types.KeyboardButton("5")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
         elif message.text == "محمد حیدری" :
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
             fourth = types.KeyboardButton("4")
             fifth = types.KeyboardButton("5")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
 
     except Exception:
@@ -293,73 +317,89 @@ def vote_for_speakers(message):
         bot.register_next_step_handler(msg, vote_part)
 
 
-def first_question(message, theProvider):
+def first_question(message):
     try:
         accepted = ["1", "2", "3", "4", "5"]
         if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.first_question = message.text
-            msg = bot.send_message(message.chat.id, "۲. تسلط ارائه دهنده بر موضوعم", reply_markup=keyboard)
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
             fourth = types.KeyboardButton("4")
             fifth = types.KeyboardButton("5")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            msg = bot.send_message(message.chat.id, "۲. تسلط ارائه دهنده بر موضوعم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, second_question)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
         bot.register_next_step_handler(msg, first_question)
 
-def second_question(message, theProvider):
+def second_question(message):
     try:
         accepted = ["1", "2", "3", "4", "5"]
         if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.second_question = message.text
-            msg = bot.send_message(message.chat.id, "۳. مناسب بودن موضوع ارائه شده", reply_markup=keyboard)
             yes = types.KeyboardButton("بله")
-            second = types.KeyboardButton("خیر")
+            no = types.KeyboardButton("خیر")
+            keyboard.add(yes)
+            keyboard.add(no)
+            msg = bot.send_message(message.chat.id, "۳. مناسب بودن موضوع ارائه شده", reply_markup=keyboard)
             bot.register_next_step_handler(msg, third_question)
 
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
         bot.register_next_step_handler(msg, second_question)
 
-def third_question(message, theProvider):
+def third_question(message):
     try:
         accepted = ["1", "2", "3", "4", "5"]
         if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.third_question = message.text
-            voterlist.chatId
-            msg = bot.send_message(message.chat.id, "۴. آیا موضوع گفته شده با محتوای کارگاه تناسب داشت؟", reply_markup=keyboard)
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
             fourth = types.KeyboardButton("4")
             fifth = types.KeyboardButton("5")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            msg = bot.send_message(message.chat.id, "۴. آیا موضوع گفته شده با محتوای کارگاه تناسب داشت؟", reply_markup=keyboard)
             bot.register_next_step_handler(msg, fourth_question)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
         bot.register_next_step_handler(msg, third_question)
 
 
-def fourth_question(message, theProvider):
+def fourth_question(message):
     try:
         accepted = ["بله" , "خیر"]
         if message.text in accepted:
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.forth_question = message.text
-            msg = bot.send_message(message.chat.id, "۵. در کل به این کارگاه چه نمره ای را می‌دهید؟", reply_markup=keyboard)
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
             fourth = types.KeyboardButton("4")
             fifth = types.KeyboardButton("5")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            msg = bot.send_message(message.chat.id, "۵. در کل به این کارگاه چه نمره ای را می‌دهید؟", reply_markup=keyboard)
             bot.register_next_step_handler(msg, fifth_question)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
@@ -367,7 +407,7 @@ def fourth_question(message, theProvider):
 
 
 
-def fifth_question(message, theProvider):
+def fifth_question(message):
     try:
         accepted = ["1", "2", "3", "4", "5"]
         if message.text in accepted:
