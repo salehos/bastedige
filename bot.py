@@ -26,7 +26,7 @@ class Pm:
 @bot.message_handler(commands=['start'])
 def first_step(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    universityMap = types.KeyboardButton("نقشه دانشگاه")
+    universityMap = types.KeyboardButton("راهنمایی مکان‌های دانشگاه")
     tables = types.KeyboardButton("زمان بندی کارگاه‌ها")
     introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
     vote = types.KeyboardButton("نظرسنجی")
@@ -42,12 +42,24 @@ def first_step(message):
 
 def choosing_one(message):
     try:
-        if message.text == "نقشه دانشگاه":
+        if message.text == "راهنمایی مکان‌های دانشگاه":
             keyboard = types.ReplyKeyboardMarkup()
             keyboard = types.ReplyKeyboardRemove(selective=False)
-            photo = open("/home/wssbot/kuroky.jpg", 'rb')
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+            universityMap = types.KeyboardButton("نقشه دانشگاه")
+            dareJonobBeDaneshkadeh = types.KeyboardButton("گیف در جنوبی به دانشکده")
+            dareShomaliBeDaneshkade = types.KeyboardButton("گیف در شمالی به دانشکده")
+            dareShomaliBeTalar = types.KeyboardButton("گیف در شمالی به تالارها")
+            talarBeSelf = types.KeyboardButton("گیف تالارها به سلف")
+            dareJonobiBeTalar = types.KeyboardButton("گیف در جنوبی به تالارها")
+            keyboard.add(universityMap)
+            keyboard.add(dareJonobBeDaneshkadeh)
+            keyboard.add(dareShomaliBeDaneshkade)
+            keyboard.add(dareShomaliBeTalar)
+            keyboard.add(talarBeSelf)
+            keyboard.add(dareJonobiBeTalar)
             msg = bot.send_photo(message.chat.id, photo)
-            bot.register_next_step_handler(msg, choosing_one)
+            bot.register_next_step_handler(msg, guidance)
         elif message.text == "زمان بندی کارگاه‌ها":
             photo = open("/home/wssbot/kargahHa.jpg", 'rb')
             msg = bot.send_photo(message.chat.id, photo)
@@ -75,11 +87,43 @@ def choosing_one(message):
         bot.register_next_step_handler(msg, choosing_one)
 
 
+def guidance(message):
+    try:
+        if message.text = "نقشه دانشگاه" :
+            photo = open("/home/wssbot/kuroky.jpg", 'rb')
+            msg = bot.send_photo(message.chat.id, photo)
+            bot.register_next_step_handler(msg, choosing_one)
+        elif message.text = "گیف در جنوبی به دانشکده" :
+            photo = open("/home/wssbot/dareJonobBeDaneshkadeh.gif", 'rb')
+            msg = bot.send_photo(message.chat.id, photo)
+            bot.register_next_step_handler(msg, choosing_one)
+        elif message.text =  "گیف در شمالی به دانشکده" :
+            photo = open("/home/wssbot/dareShomaliBeDaneshkade.gif", 'rb')
+            msg = bot.send_photo(message.chat.id, photo)
+            bot.register_next_step_handler(msg, choosing_one)
+        elif message.text = "گیف در شمالی به تالارها" :
+            photo = open("/home/wssbot/dareShomaliBeTalar.gif", 'rb')
+            msg = bot.send_photo(message.chat.id, photo)
+            bot.register_next_step_handler(msg, choosing_one)
+        elif message.text =  "گیف تالارها به سلف":
+            photo = open("/home/wssbot/talarBeSelf.gif", 'rb')
+            msg = bot.send_photo(message.chat.id, photo)
+            bot.register_next_step_handler(msg, choosing_one)
+        elif message.text =  "گیف در جنوبی به تالارها":
+            photo = open("/home/wssbot/dareJonobiBeTalar.gif", 'rb')
+            msg = bot.send_photo(message.chat.id, photo)
+            bot.register_next_step_handler(msg, choosing_one)
+
+    except Exception :
+        msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
+        bot.register_next_step_handler(msg, choosing_one)
+
+
 def vote_part(message):
     try:
         if message.text == "نظرسنجی کلی رویداد" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-            universityMap = types.KeyboardButton("نقشه دانشگاه")
+            universityMap = types.KeyboardButton("راهنمایی مکان‌های دانشگاه")
             tables = types.KeyboardButton("زمان بندی کارگاها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
@@ -642,7 +686,7 @@ def choosing_providers(message):
             bot.register_next_step_handler(msg, choosing_providers)
         elif message.text == "بازگشت" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-            universityMap = types.KeyboardButton("نقشه دانشگاه")
+            universityMap = types.KeyboardButton("راهنمایی مکان‌های دانشگاه")
             tables = types.KeyboardButton("جدول زمان بندی سمینار ها و کارگاه ها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
             vote = types.KeyboardButton("نظرسنجی")
