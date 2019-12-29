@@ -171,7 +171,7 @@ def guidance(message):
             msg = bot.send_photo(message.chat.id, photo, reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
         elif message.text == "گیف در جنوبی به دانشکده" :
-            audio = open("/home/wssbot/dareJonobiBeDaneshkadeh.gif.mp4", 'rb')
+            audio = open("/home/wssbot/dareJonobiBeDaneshkade.gif.mp4", 'rb')
             msg = bot.send_video(message.chat.id, audio, reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
         elif message.text ==  "گیف در شمالی به دانشکده" :
