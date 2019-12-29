@@ -556,7 +556,7 @@ def sixth_question(message):
         print(voterlist.fourth_question)
         print(voterlist.fifth_question)
         print(voterlist.sixth_question)
-        myFile = open("inputs.txt", "a+")
+        myFile = open("/home/wssbot/inputs.txt", "a+")
         print(voterlist.voterId+ "    "  + voterlist.providerName+ "    "  + voterlist.first_question+ "    "  + voterlist.second_question+ "    " + voterlist.third_question+ "    " +voterlist.fourth_question+ "    " +voterlist.fifth_question+ "    " +voterlist.sixth_question)
         myFile.write("from chat Id:" + voterlist.voterId + "    provider:" + voterlist.providerName + "    first question:" + voterlist.first_question + "    second_question:" + voterlist.second_question + "    third_question:" + voterlist.third_question + "    fourth_question:" + voterlist.fourth_question + "    fifth_question:" + voterlist.fifth_question + "    sixth_question:" + voterlist.sixth_question +"\n")
         print("check2")
