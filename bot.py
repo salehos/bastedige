@@ -336,7 +336,6 @@ def vote_for_speakers(message):
 
 def first_question(message):
     try:
-        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         accepted = ["1", "2", "3", "4", "5", "انصراف"]
         if message.text in accepted:
             if message.text == "انصراف" :
@@ -357,6 +356,7 @@ def first_question(message):
                 keyboard.add(contact)
                 msg = bot.send_message(message.chat.id , "شما در حال برگردانده شدن هستید.", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, choosing_one)
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.first_question = message.text
@@ -380,7 +380,6 @@ def first_question(message):
 
 def second_question(message):
     try:
-        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         accepted = ["1", "2", "3", "4", "5", "انصراف"]
         if message.text in accepted:
             if message.text == "انصراف" :
@@ -401,6 +400,7 @@ def second_question(message):
                 keyboard.add(contact)
                 msg = bot.send_message(message.chat.id , "شما در حال برگردانده شدن هستید.", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, choosing_one)
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.second_question = message.text
@@ -425,7 +425,6 @@ def second_question(message):
 
 def third_question(message):
     try:
-        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         accepted = ["1", "2", "3", "4", "5", "انصراف"]
         if message.text in accepted:
             if message.text == "انصراف" :
@@ -446,6 +445,7 @@ def third_question(message):
                 keyboard.add(contact)
                 msg = bot.send_message(message.chat.id , "شما در حال برگردانده شدن هستید.", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, choosing_one)
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.third_question = message.text
@@ -464,7 +464,6 @@ def third_question(message):
 
 def fourth_question(message):
     try:
-        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         accepted = ["بله" , "خیر", "انصراف"]
         if message.text in accepted:
             if message.text == "انصراف" :
@@ -485,6 +484,7 @@ def fourth_question(message):
                 keyboard.add(contact)
                 msg = bot.send_message(message.chat.id , "شما در حال برگردانده شدن هستید.", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, choosing_one)
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.fourth_question = message.text
@@ -510,7 +510,6 @@ def fourth_question(message):
 
 def fifth_question(message):
     try:
-        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         accepted = ["1", "2", "3", "4", "5", "انصراف"]
         if message.text in accepted:
             if message.text == "انصراف" :
@@ -531,6 +530,7 @@ def fifth_question(message):
                 keyboard.add(contact)
                 msg = bot.send_message(message.chat.id , "شما در حال برگردانده شدن هستید.", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, choosing_one)
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             chatId = message.chat.id
             voterlist = user_dict[chatId]
             voterlist.fifth_question = message.text
@@ -560,6 +560,7 @@ def sixth_question(message):
         print(voterlist.voterId+ "    "  + voterlist.providerName+ "    "  + voterlist.first_question+ "    "  + voterlist.second_question+ "    " + voterlist.third_question+ "    " +voterlist.fourth_question+ "    " +voterlist.fifth_question+ "    " +voterlist.sixth_question)
         myFile.write("from chat Id:" + voterlist.voterId + "    provider:" + voterlist.providerName + "    first question:" + voterlist.first_question + "    second_question:" + voterlist.second_question + "    third_question:" + voterlist.third_question + "    fourth_question:" + voterlist.fourth_question + "    fifth_question:" + voterlist.fifth_question + "    sixth_question:" + voterlist.sixth_question +"\n")
         print("check2")
+        myFile.flush()
         myFile.close()
         print("check3")
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
