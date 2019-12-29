@@ -171,7 +171,7 @@ def guidance(message):
             msg = bot.send_photo(message.chat.id, photo, reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
         elif message.text == "گیف در جنوبی به دانشکده" :
-            audio = open("/home/wssbot/dareJonobBeDaneshkadeh.gif.mp4", 'rb')
+            audio = open("/home/wssbot/dareJonobiBeDaneshkadeh.gif.mp4", 'rb')
             msg = bot.send_video(message.chat.id, audio, reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
         elif message.text ==  "گیف در شمالی به دانشکده" :
@@ -244,7 +244,7 @@ def vote_part(message):
             behzadMoshiri = types.KeyboardButton("دکتر بهزاد مشیری")
             ehsanEmamjomezadeh = types.KeyboardButton("دکتر احسان امام جمعه زاده")
             mohammadHeydari = types.KeyboardButton("محمد حیدری")
-            back = types.KeyboardButton("بازگشت")
+            back = types.KeyboardButton("انصراف")
             keyboard.add(behzadMoshiri)
             keyboard.add(ehsanEmamjomezadeh)
             keyboard.add(mohammadHeydari)
@@ -328,7 +328,24 @@ def vote_for_speakers(message):
             keyboard.add(back)
             msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
-
+        elif message.text == "انصراف" :
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+            universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
+            tables = types.KeyboardButton("زمان بندی کارگاه ها")
+            introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
+            vote = types.KeyboardButton("نظرسنجی")
+            contact = types.KeyboardButton("ارتباط با ادمین")
+            sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
+            location = types.KeyboardButton("مکان دانشگاه")
+            keyboard.add(location)
+            keyboard.add(sokhanraniTime)
+            keyboard.add(universityMap)
+            keyboard.add(tables)
+            keyboard.add(introduce)
+            keyboard.add(vote)
+            keyboard.add(contact)
+            msg = bot.send_message(message.chat.id , "شما در حال برگردانده شدن هستید.", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, choosing_one)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
         bot.register_next_step_handler(msg, vote_part)
