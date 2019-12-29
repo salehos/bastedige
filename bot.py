@@ -145,7 +145,7 @@ def choosing_one(message):
         elif message.text == "نظرسنجی":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             seminarvote = types.KeyboardButton("نظرسنجی کلی رویداد")
-            speakersvote = types.KeyboardButton("نظرسنجی مربوط به هر سخنرانی")
+            speakersvote = types.KeyboardButton( "نظرسنجی مربوط به هر کارکاه")
             keyboard.add(seminarvote)
             keyboard.add(speakersvote)
             msg = bot.send_message(message.chat.id, " به بخش نظرسنجی خوش آمدید، لطفا یکی از انواع نظرسنجی را انتخاب کنید...", reply_markup=keyboard)
@@ -238,17 +238,22 @@ def vote_part(message):
             keyboard.add(contact)
             msg = bot.reply_to(message, "این بخش در حال کامل شدن است، در حال بازگشت به منوی اصلی", reply_markup=keyboard)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text == "نظرسنجی مربوط به هر سخنرانی" :
+        elif message.text == "نظرسنجی مربوط به هر کارکاه" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-            zahraNazari = types.KeyboardButton("دکتر زهرا نظری")
-            behzadMoshiri = types.KeyboardButton("دکتر بهزاد مشیری")
-            ehsanEmamjomezadeh = types.KeyboardButton("دکتر احسان امام جمعه زاده")
-            mohammadHeydari = types.KeyboardButton("محمد حیدری")
+            alirezaRezaei = types.KeyboardButton("Alireza Rezaei - Modeling Diversity in Machine Learning Using Determinantal Point Processes")
+            behzadMoshiri = types.KeyboardButton("Behzad Moshiri -Sensor / Data Fusion, Theoretical and Practical issues Sunday, 29 December 2019")
+            mohammadHeydari = types.KeyboardButton("Mohammad Heydari - Discovering Latent Patterns in Academic Collaboration Network based on Community Detection Approach")
+            masodZamani = types.KeyboardButton("Masoud Zamani - Choose to be a Wizard or a Muggle? Journey towards an Exponential world")
+            mohammadKhaloei = types.KeyboardButton("Mohammad Khalooei - Robustness of Deep Neural Networks")
+            mozhganMirzaei = types.KeyboardButton("Mozhgan Mirzaei - Incidence Theorem and Its Applications")
+            nedaSoltani = types.KeyboardButton("Neda Soltani - Social Network Analysis with Gephi")
+
             back = types.KeyboardButton("انصراف")
-            keyboard.add(behzadMoshiri)
-            keyboard.add(ehsanEmamjomezadeh)
             keyboard.add(mohammadHeydari)
-            keyboard.add(zahraNazari)
+            keyboard.add(masodZamani)
+            keyboard.add(mohammadKhaloei)
+            keyboard.add(mozhganMirzaei)
+            keyboard.add(nedaSoltani)
             keyboard.add(back)
             msg = bot.send_message(message.chat.id, "لطفا فرد مورد نظر خود را انتخاب کنید", reply_markup=keyboard)
             bot.register_next_step_handler(msg, vote_for_speakers)
@@ -268,7 +273,7 @@ def vote_for_speakers(message):
         user_dict[chatId] = voterlist
         voterlist.voterId = message.chat.id
         voterlist.providerName = providerName
-        if message.text == "دکتر زهرا نظری" :
+        if message.text == "Alireza Rezaei - Modeling Diversity in Machine Learning Using Determinantal Point Processes" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -283,7 +288,7 @@ def vote_for_speakers(message):
             keyboard.add(back)
             msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
-        elif message.text == "دکتر بهزاد مشیری" :
+        elif message.text =="Behzad Moshiri -Sensor / Data Fusion, Theoretical and Practical issues Sunday, 29 December 2019" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -298,7 +303,7 @@ def vote_for_speakers(message):
             keyboard.add(back)
             msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
-        elif message.text == "دکتر احسان امام جمعه زاده" :
+        elif message.text == "Mohammad Heydari - Discovering Latent Patterns in Academic Collaboration Network based on Community Detection Approach" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -313,7 +318,52 @@ def vote_for_speakers(message):
             keyboard.add(back)
             msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
-        elif message.text == "محمد حیدری" :
+        elif message.text == "Masoud Zamani - Choose to be a Wizard or a Muggle? Journey towards an Exponential world" :
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+        elif message.text == "Mohammad Khalooei - Robustness of Deep Neural Networks" :
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+        elif message.text == "Mozhgan Mirzaei - Incidence Theorem and Its Applications" :
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+        elif message.text == "Neda Soltani - Social Network Analysis with Gephi" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
