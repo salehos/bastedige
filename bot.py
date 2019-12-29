@@ -556,10 +556,10 @@ def sixth_question(message):
         print(voterlist.fourth_question)
         print(voterlist.fifth_question)
         print(voterlist.sixth_question)
-        allAnswers = str("from chat Id:"+ voterlist.voterId + "provider:" +    voterlist.providerName+ "first question:"
-                         + voterlist.first_question +"second_question:" + voterlist.second_question +
-                         "third_question:" + voterlist.third_question + "fourth_question:" + voterlist.fourth_question
-                         + "fifth_question:" + voterlist.fifth_question + "sixth_question:" + voterlist.sixth_question + "\n" )
+        allAnswers = str("from chat Id:"+ str(voterlist.voterId) + "provider:" +    str(voterlist.providerName)+ "first question:"
+                         + str(voterlist.first_question) +"second_question:" + str(voterlist.second_question) +
+                         "third_question:" + str(voterlist.third_question) + "fourth_question:" + str(voterlist.fourth_question)
+                         + "fifth_question:" + str(voterlist.fifth_question) + "sixth_question:" + str(voterlist.sixth_question) + "\n" )
         myFile = open("/home/wssbot/inputs.txt", "a+")
         print(allAnswers)
         myFile.write(allAnswers)
