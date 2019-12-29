@@ -480,7 +480,7 @@ def fourth_question(message):
                 bot.register_next_step_handler(msg, choosing_one)
             chatId = message.chat.id
             voterlist = user_dict[chatId]
-            voterlist.forth_question = message.text
+            voterlist.fourth_question = message.text
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -542,7 +542,7 @@ def sixth_question(message):
         print("check")
         myFile = open("inputs.txt", "a+")
         print("check")
-        myFile.write("from chat Id:" + voterlist.voterId + "    provider:" + voterlist.providerName + "    first question:" + voterlist.first_question + "    second_question:" + voterlist.second_question + "    third_question:" + voterlist.third_question + "    forth_question:" + voterlist.forth_question + "    fifth_question:" + voterlist.fifth_question + "    sixth_question:" + voterlist.sixth_question +"\n")
+        myFile.write("from chat Id:" + voterlist.voterId + "    provider:" + voterlist.providerName + "    first question:" + voterlist.first_question + "    second_question:" + voterlist.second_question + "    third_question:" + voterlist.third_question + "    fourth_question:" + voterlist.fourth_question + "    fifth_question:" + voterlist.fifth_question + "    sixth_question:" + voterlist.sixth_question +"\n")
         print("check2")
         myFile.close()
         print("check3")
