@@ -564,7 +564,6 @@ def sixth_question(message):
         voterlist = user_dict[chatId]
         sixthAnswer = message.text
         voterlist.sixth_question = sixthAnswer
-        print("check")
         print(voterlist.voterId)
         print(voterlist.providerName)
         print(voterlist.first_question)
@@ -573,17 +572,14 @@ def sixth_question(message):
         print(voterlist.fourth_question)
         print(voterlist.fifth_question)
         print(voterlist.sixth_question)
-        allAnswers = str("from chat Id:"+ str(voterlist.voterId) + "provider:" +    str(voterlist.providerName)+ "first question:"
-                         + str(voterlist.first_question) +"second_question:" + str(voterlist.second_question) +
-                         "third_question:" + str(voterlist.third_question) + "fourth_question:" + str(voterlist.fourth_question)
-                         + "fifth_question:" + str(voterlist.fifth_question) + "sixth_question:" + str(voterlist.sixth_question) + "\n" )
-        myFile = open("/home/wssbot/inputs.txt", "a+")
-        print(allAnswers)
+        allAnswers = str("from chat Id:"+ str(voterlist.voterId) + "\tprovider:" +    str(voterlist.providerName)+ "\tfirst question:"
+                         + str(voterlist.first_question) +"\tsecond_question:" + str(voterlist.second_question) +
+                         "\tthird_question:" + str(voterlist.third_question) + "\tfourth_question:" + str(voterlist.fourth_question)
+                         + "\tfifth_question:" + str(voterlist.fifth_question) + "\tsixth_question:" + str(voterlist.sixth_question) + "\n" )
+        myFile = open("/home/inputs.txt", "a+")
         myFile.write(allAnswers)
-        print("check23")
         myFile.flush()
         myFile.close()
-        print("check3")
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
         tables = types.KeyboardButton("زمان بندی کارگاه ها")
