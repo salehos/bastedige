@@ -195,7 +195,7 @@ def guidance(message):
             msg = bot.send_video(message.chat.id, audio, reply_markup=keyboard)
             bot.register_next_step_handler(msg, guidance)
         elif message.text == "بازگشت":
-            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)  
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
             tables = types.KeyboardButton("زمان بندی کارگاه ها")
             introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
@@ -547,7 +547,8 @@ def sixth_question(message):
         voterlist.sixth_question = message.text
         print("check")
         myFile = open("inputs.txt", "a+")
-        print("check")
+        print(voterlist.voterId+ "    "  + voterlist.providerName+ "    "  + voterlist.first_question+ "    "  + voterlist.second_question+ "    " + voterlist.third_question+ "    " +voterlist.fourth_question+ "    " +voterlist.fifth_question+ "    " +voterlist.sixth_question)
+
         myFile.write("from chat Id:" + voterlist.voterId + "    provider:" + voterlist.providerName + "    first question:" + voterlist.first_question + "    second_question:" + voterlist.second_question + "    third_question:" + voterlist.third_question + "    fourth_question:" + voterlist.fourth_question + "    fifth_question:" + voterlist.fifth_question + "    sixth_question:" + voterlist.sixth_question +"\n")
         print("check2")
         myFile.close()
