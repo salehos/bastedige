@@ -22,6 +22,19 @@ class Pm:
     def __init__(self, id):
         self.id = id
         self.textToUser = None
+@bot.message_handler(commands=['sendpmtoallmembers'])
+def send_pm_to_all(message):
+    msg = bot.send_message(message.chat.id , "now send me a text")
+    bot.register_next_step_handler(msg, send_message_to_all)
+
+def send_message(message):
+    userFiles = open("/home/allusers.txt", "r+")
+    ids = userFiles.read()
+    ids = ids.split(" ")
+    for i in ids:
+        bot.send_message(i , text = message.text)
+    userFiles.flush()
+    userFiles.close()
 
 @bot.message_handler(commands=['start'])
 def first_step(message):
@@ -40,6 +53,12 @@ def first_step(message):
     keyboard.add(vote)
     keyboard.add(contact)
     keyboard.add(sokhanraniTime)
+    userFiles = open("/home/users.txt", "a+")
+    users = myFile.read()
+    if message.chat.id not in users:
+        userFiles.write(message.chat.id + " ")
+    userFiles.flush()
+    userFiles.close()
     msg = bot.reply_to(message, 'خوش آمدید. چه کمکی از دست من برمیاد؟', reply_markup=keyboard)
     bot.register_next_step_handler(msg, choosing_one)
 
@@ -71,11 +90,18 @@ def choosing_one(message):
             msg = bot.send_photo(message.chat.id, photo)
             bot.register_next_step_handler(msg, choosing_one)
 
+
         elif message.text == "جدول زمانی سخنرانی ها":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-            msg = bot.send_message(message.chat.id, "https://calendar.google.com/calendar/b/6?cid=d3NzLnN1dEBnbWFpbC5jb20\n "
-            "برای دیدن جدول زمانبندی رویداد به لینک بالا  بروید.", reply_markup=keyboard)
-            bot.register_next_step_handler(msg , choosing_one)
+            first_day = types.KeyboardButton("نظرسنجی کلی رویداد")
+            second_day = types.KeyboardButton("نظرسنجی مربوط به هر کارکاه")
+            keyboard.add(first_day)
+            keyboard.add(second_day)
+            msg = bot.send_message(message.chat.id,
+                                   "لطفا روز مورد نظر خود را انتخاب کنید.",
+                                   reply_markup=keyboard)
+            bot.register_next_step_handler(msg, which_day)
+
 
         elif message.text == "آشنایی با ارائه دهنده ها":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
@@ -163,6 +189,49 @@ def choosing_one(message):
         bot.register_next_step_handler(msg, choosing_one)
 
 
+def which_day(message):
+    try:
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+        if message.text == "روز اول":
+            photo = open("day1.jpg", 'rb')
+            universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
+            tables = types.KeyboardButton("زمان بندی کارگاه ها")
+            introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
+            vote = types.KeyboardButton("نظرسنجی")
+            sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
+            contact = types.KeyboardButton("ارتباط با ادمین")
+            location = types.KeyboardButton("مکان دانشگاه")
+            keyboard.add(location)
+            keyboard.add(universityMap)
+            keyboard.add(tables)
+            keyboard.add(introduce)
+            keyboard.add(vote)
+            keyboard.add(contact)
+            keyboard.add(sokhanraniTime)
+            msg = bot.send_photo(message.chat.id, photo ,reply_markup = keyboard)
+            bot.register_next_step_handler(msg , first_step)
+        elif message.text == "روز دوم":
+            photo = open("day2.jpg", 'rb')
+            universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
+            tables = types.KeyboardButton("زمان بندی کارگاه ها")
+            introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
+            vote = types.KeyboardButton("نظرسنجی")
+            sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
+            contact = types.KeyboardButton("ارتباط با ادمین")
+            location = types.KeyboardButton("مکان دانشگاه")
+            keyboard.add(location)
+            keyboard.add(universityMap)
+            keyboard.add(tables)
+            keyboard.add(introduce)
+            keyboard.add(vote)
+            keyboard.add(contact)
+            keyboard.add(sokhanraniTime)
+            msg = bot.send_photo(message.chat.id, photo, reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_step)
+    except Exception:
+        msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
+        bot.register_next_step_handler(msg, which_day)
+
 def guidance(message):
     try:
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
@@ -240,20 +309,62 @@ def vote_part(message):
             bot.register_next_step_handler(msg, choosing_one)
         elif message.text == "نظرسنجی مربوط به هر کارکاه" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-            alirezaRezaei = types.KeyboardButton("Alireza Rezaei - Modeling Diversity in Machine Learning Using Determinantal Point Processes")
-            behzadMoshiri = types.KeyboardButton("Behzad Moshiri -Sensor / Data Fusion, Theoretical and Practical issues Sunday, 29 December 2019")
-            mohammadHeydari = types.KeyboardButton("Mohammad Heydari - Discovering Latent Patterns in Academic Collaboration Network based on Community Detection Approach")
-            masodZamani = types.KeyboardButton("Masoud Zamani - Choose to be a Wizard or a Muggle? Journey towards an Exponential world")
-            mohammadKhaloei = types.KeyboardButton("Mohammad Khalooei - Robustness of Deep Neural Networks")
-            mozhganMirzaei = types.KeyboardButton("Mozhgan Mirzaei - Incidence Theorem and Its Applications")
-            nedaSoltani = types.KeyboardButton("Neda Soltani - Social Network Analysis with Gephi")
+            behzadMoshiri = types.KeyboardButton("Behzad Moshiri - Data Fusion” an AI approach for decision making")
+            omidEtesami = types.KeyboardButton("Omid Etesami - Computational Concentration of Measure and Robust Learning")
+            aminBabadi = types.KeyboardButton("Amin Babadi - Animation Synthesis using Machine Learning")
+            siminOreei = types.KeyboardButton("Simin Oreei - Random testing of distributed systems with guarantees")
+            afraAbnar = types.KeyboardButton("Afra Abnar - Microservice Architecture")
+            mohammadMahdian = types.KeyboardButton("Mohammad Mahdian - Fairness in Clustering Algorithms")
+            shahriyarEbrahimi = types.KeyboardButton("Shahriyar Ebrahimi - The Future of Cryptography: a Case-study of Lattice-based ones")
+            ehsanEmamjomezadeh = types.KeyboardButton("Ehsan Emamjomeh-Zadeh - Online Learning")
+            meysamAlizadeh = types.KeyboardButton("Meysam Alizadeh - Detecting Coordinated Influence Operation Content on Social Media")
+            mohammadMahmodi = types.KeyboardButton("Mohammad Mahmoody - Registration-Based Encryption")
+            moslemNoori = types.KeyboardButton("Moslem Noori - An application of quantum computing in chemistry")
+            mozhganMirzaei = types.KeyboardButton("Mozhgan Mirzaei - Extremal Configurations in Point-Line Arrangements")
+            salmanAbolfathbeigi = types.KeyboardButton("Salman Abolfath Beygi - Nonlocal Correlations in Networks")
+            mohammadHosseinNoranian = types.KeyboardButton("Mohammad Hossein Noranian - Complexities in AI Commercialization")
+            kerishaGomadi = types.KeyboardButton("Krishna Gummadi - Fairness in Machine Learning")
+            hamedSaleh =  types.KeyboardButton("Hamed Saleh - Streaming and Massively Parellel Algorithms for Edge Coloring")
+            mortezaSaberi = types.KeyboardButton("Morteza Saberi - Personalized Assortment Optimization for Online Retailer Considering Risk of Customers Churning")
+            aliSharifiZarchi = types.KeyboardButton("Ali Sharifi Zarchi - Addressing several biomedical problems using deep learning")
+            sinaDehghani = types.KeyboardButton("Sina Dehghani - Price of Competition and Dueling Games")
+            rezaMohammadi = types.KeyboardButton("Reza Mohammadi - ‏A Journey into Media Studies from the Perspective of a Technical Person")
+            amirNajjafi = types.KeyboardButton("Amir Najafi - Robustness to Adversarial Perturbations in Learning from Incomplete Data")
+            mehdiSafarnenjad = types.KeyboardButton("Mahdi Safarnejad - Edit Distance and LCS: Beyond Worst Case")
+            zahraNazari = types.KeyboardButton("Zahra Nazari - Recommender Systems Research: Advances, Pitfalls and Opportunities")
+            mohammadSalehe = types.KeyboardButton("Mohammad Salehe - ‏Cloud Computing, Edge Computing and Beyond")
+            arashPordamqani = types.KeyboardButton("Arash Pourdamghani - Algorithms and Games in Blockchain: Designing Verifable Systems")
+            meysamRazavin = types.KeyboardButton("Meisam Razaviyayn - ‏Learning via Non-Convex Min-Max Games")
+
 
             back = types.KeyboardButton("انصراف")
-            keyboard.add(mohammadHeydari)
-            keyboard.add(masodZamani)
-            keyboard.add(mohammadKhaloei)
+            keyboard.add(behzadMoshiri)
+            keyboard.add(omidEtesami)
+            keyboard.add(aminBabadi)
+            keyboard.add(siminOreei)
+            keyboard.add(afraAbnar)
+            keyboard.add(mohammadMahdian)
+            keyboard.add(shahriyarEbrahimi)
+            keyboard.add(ehsanEmamjomezadeh)
+            keyboard.add(meysamAlizadeh)
+            keyboard.add(mohammadMahmodi)
+            keyboard.add(moslemNoori)
             keyboard.add(mozhganMirzaei)
-            keyboard.add(nedaSoltani)
+            keyboard.add(salmanAbolfathbeigi)
+            keyboard.add(mohammadHosseinNoranian)
+            keyboard.add(kerishaGomadi)
+            keyboard.add(hamedSaleh)
+            keyboard.add(mortezaSaberi)
+            keyboard.add(aliSharifiZarchi)
+            keyboard.add(sinaDehghani)
+            keyboard.add(rezaMohammadi)
+            keyboard.add(amirNajjafi)
+            keyboard.add(mehdiSafarnenjad)
+            keyboard.add(zahraNazari)
+            keyboard.add(mohammadSalehe)
+            keyboard.add(arashPordamqani)
+            keyboard.add(meysamRazavin)
+
             keyboard.add(back)
             msg = bot.send_message(message.chat.id, "لطفا فرد مورد نظر خود را انتخاب کنید", reply_markup=keyboard)
             bot.register_next_step_handler(msg, vote_for_speakers)
@@ -273,7 +384,7 @@ def vote_for_speakers(message):
         user_dict[chatId] = voterlist
         voterlist.voterId = message.chat.id
         voterlist.providerName = providerName
-        if message.text == "Alireza Rezaei - Modeling Diversity in Machine Learning Using Determinantal Point Processes" :
+        if message.text == "Behzad Moshiri - Data Fusion” an AI approach for decision making" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -289,7 +400,7 @@ def vote_for_speakers(message):
             msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
 
-        elif message.text =="Behzad Moshiri -Sensor / Data Fusion, Theoretical and Practical issues Sunday, 29 December 2019" :
+        elif message.text =="Omid Etesami - Computational Concentration of Measure and Robust Learning" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -305,7 +416,7 @@ def vote_for_speakers(message):
             msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
 
-        elif message.text == "Mohammad Heydari - Discovering Latent Patterns in Academic Collaboration Network based on Community Detection Approach" :
+        elif message.text == "Amin Babadi - Animation Synthesis using Machine Learning" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -321,7 +432,7 @@ def vote_for_speakers(message):
             msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
 
-        elif message.text == "Masoud Zamani - Choose to be a Wizard or a Muggle? Journey towards an Exponential world" :
+        elif message.text == "Simin Oreei - Random testing of distributed systems with guarantees" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -337,7 +448,7 @@ def vote_for_speakers(message):
             msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
 
-        elif message.text == "Mohammad Khalooei - Robustness of Deep Neural Networks" :
+        elif message.text == "Mohammad Mahdian - Fairness in Clustering Algorithms" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -353,7 +464,7 @@ def vote_for_speakers(message):
             msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
 
-        elif message.text == "Mozhgan Mirzaei - Incidence Theorem and Its Applications" :
+        elif message.text == "Shahriyar Ebrahimi - The Future of Cryptography: a Case-study of Lattice-based ones" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -369,7 +480,7 @@ def vote_for_speakers(message):
             msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
 
-        elif message.text == "Neda Soltani - Social Network Analysis with Gephi" :
+        elif message.text == "Ehsan Emamjomeh-Zadeh - Online Learning" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -385,7 +496,279 @@ def vote_for_speakers(message):
             msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
 
-        elif message.text == "Neda Soltani - Social Network Analysis with Gephi" :
+        elif message.text == "Meysam Alizadeh - Detecting Coordinated Influence Operation Content on Social Media" :
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Mohammad Mahmoody - Registration-Based Encryption":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text ==  "Moslem Noori - An application of quantum computing in chemistry":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Mozhgan Mirzaei - Extremal Configurations in Point-Line Arrangements":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text =="Salman Abolfath Beygi - Nonlocal Correlations in Networks" :
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Mohammad Hossein Noranian - Complexities in AI Commercialization":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Krishna Gummadi - Fairness in Machine Learning":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text =="Hamed Saleh - Streaming and Massively Parellel Algorithms for Edge Coloring" :
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Morteza Saberi - Personalized Assortment Optimization for Online Retailer Considering Risk of Customers Churning":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Ali Sharifi Zarchi - Addressing several biomedical problems using deep learning":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Sina Dehghani - Price of Competition and Dueling Games":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Reza Mohammadi - ‏A Journey into Media Studies from the Perspective of a Technical Person":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Amir Najafi - Robustness to Adversarial Perturbations in Learning from Incomplete Data":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Mahdi Safarnejad - Edit Distance and LCS: Beyond Worst Case" :
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Zahra Nazari - Recommender Systems Research: Advances, Pitfalls and Opportunities":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Mohammad Salehe - ‏Cloud Computing, Edge Computing and Beyond":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Arash Pourdamghani - Algorithms and Games in Blockchain: Designing Verifable Systems":
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Meisam Razaviyayn - ‏Learning via Non-Convex Min-Max Games":
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
             third = types.KeyboardButton("3")
@@ -646,7 +1029,7 @@ def sixth_question(message):
                          + str(voterlist.first_question) +"\tsecond_question:" + str(voterlist.second_question) +
                          "\tthird_question:" + str(voterlist.third_question) + "\tfourth_question:" + str(voterlist.fourth_question)
                          + "\tfifth_question:" + str(voterlist.fifth_question) + "\tsixth_question:" + str(voterlist.sixth_question) + "\n" )
-        myFile = open("/home/inputs.txt", "a+")
+        myFile = open("/home/seminarVotes.txt", "a+")
         myFile.write(allAnswers)
         myFile.flush()
         myFile.close()
