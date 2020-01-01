@@ -94,7 +94,7 @@ def choosing_one(message):
         elif message.text == "جدول زمانی سخنرانی ها":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             first_day = types.KeyboardButton("نظرسنجی کلی رویداد")
-            second_day = types.KeyboardButton("نظرسنجی مربوط به هر کارکاه")
+            second_day = types.KeyboardButton("نظرسنجی مربوط به هر ارائه")
             keyboard.add(first_day)
             keyboard.add(second_day)
             msg = bot.send_message(message.chat.id,
@@ -171,7 +171,7 @@ def choosing_one(message):
         elif message.text == "نظرسنجی":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             seminarvote = types.KeyboardButton("نظرسنجی کلی رویداد")
-            speakersvote = types.KeyboardButton( "نظرسنجی مربوط به هر کارکاه")
+            speakersvote = types.KeyboardButton( "نظرسنجی مربوط به هر ارائه")
             keyboard.add(seminarvote)
             keyboard.add(speakersvote)
             msg = bot.send_message(message.chat.id, " به بخش نظرسنجی خوش آمدید، لطفا یکی از انواع نظرسنجی را انتخاب کنید...", reply_markup=keyboard)
@@ -307,7 +307,7 @@ def vote_part(message):
             keyboard.add(contact)
             msg = bot.reply_to(message, "این بخش در حال کامل شدن است، در حال بازگشت به منوی اصلی", reply_markup=keyboard)
             bot.register_next_step_handler(msg, choosing_one)
-        elif message.text == "نظرسنجی مربوط به هر کارکاه" :
+        elif message.text == "نظرسنجی مربوط به هر ارائه" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             behzadMoshiri = types.KeyboardButton("Behzad Moshiri - Data Fusion” an AI approach for decision making")
             omidEtesami = types.KeyboardButton("Omid Etesami - Computational Concentration of Measure and Robust Learning")
