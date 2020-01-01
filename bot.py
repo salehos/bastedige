@@ -286,8 +286,9 @@ def vote_for_speakers(message):
             keyboard.add(fourth)
             keyboard.add(fifth)
             keyboard.add(back)
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
+
         elif message.text =="Behzad Moshiri -Sensor / Data Fusion, Theoretical and Practical issues Sunday, 29 December 2019" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
@@ -301,8 +302,9 @@ def vote_for_speakers(message):
             keyboard.add(fourth)
             keyboard.add(fifth)
             keyboard.add(back)
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
+
         elif message.text == "Mohammad Heydari - Discovering Latent Patterns in Academic Collaboration Network based on Community Detection Approach" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
@@ -316,8 +318,9 @@ def vote_for_speakers(message):
             keyboard.add(fourth)
             keyboard.add(fifth)
             keyboard.add(back)
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
+
         elif message.text == "Masoud Zamani - Choose to be a Wizard or a Muggle? Journey towards an Exponential world" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
@@ -331,8 +334,9 @@ def vote_for_speakers(message):
             keyboard.add(fourth)
             keyboard.add(fifth)
             keyboard.add(back)
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
+
         elif message.text == "Mohammad Khalooei - Robustness of Deep Neural Networks" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
@@ -346,8 +350,9 @@ def vote_for_speakers(message):
             keyboard.add(fourth)
             keyboard.add(fifth)
             keyboard.add(back)
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
+
         elif message.text == "Mozhgan Mirzaei - Incidence Theorem and Its Applications" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
@@ -361,8 +366,9 @@ def vote_for_speakers(message):
             keyboard.add(fourth)
             keyboard.add(fifth)
             keyboard.add(back)
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
+
         elif message.text == "Neda Soltani - Social Network Analysis with Gephi" :
             first = types.KeyboardButton("1")
             second = types.KeyboardButton("2")
@@ -376,8 +382,25 @@ def vote_for_speakers(message):
             keyboard.add(fourth)
             keyboard.add(fifth)
             keyboard.add(back)
-            msg = bot.send_message(message.chat.id, "۱. ارائه کارگاه مناسب و قابل فهم", reply_markup=keyboard)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_question)
+
+        elif message.text == "Neda Soltani - Social Network Analysis with Gephi" :
+            first = types.KeyboardButton("1")
+            second = types.KeyboardButton("2")
+            third = types.KeyboardButton("3")
+            fourth = types.KeyboardButton("4")
+            fifth = types.KeyboardButton("5")
+            back = types.KeyboardButton("انصراف")
+            keyboard.add(first)
+            keyboard.add(second)
+            keyboard.add(third)
+            keyboard.add(fourth)
+            keyboard.add(fifth)
+            keyboard.add(back)
+            msg = bot.send_message(message.chat.id, "۱. ارائه مناسب و قابل فهم", reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_question)
+
         elif message.text == "انصراف" :
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
             universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
@@ -440,7 +463,7 @@ def first_question(message):
                 keyboard.add(fourth)
                 keyboard.add(fifth)
                 keyboard.add(back)
-                msg = bot.send_message(message.chat.id, "۲. تسلط ارائه دهنده بر موضوعم", reply_markup=keyboard)
+                msg = bot.send_message(message.chat.id, "۲. تسلط ارائه دهنده بر موضوع", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, second_question)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
@@ -525,7 +548,7 @@ def third_question(message):
                 keyboard.add(yes)
                 keyboard.add(no)
                 keyboard.add(back)
-                msg = bot.send_message(message.chat.id, "۴. آیا موضوع گفته شده با محتوای کارگاه تناسب داشت؟", reply_markup=keyboard)
+                msg = bot.send_message(message.chat.id, "۴. آیا موضوع گفته شده با محتوای ارائه تناسب داشت؟", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, fourth_question)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
@@ -571,7 +594,7 @@ def fourth_question(message):
                 keyboard.add(fourth)
                 keyboard.add(fifth)
                 keyboard.add(back)
-                msg = bot.send_message(message.chat.id, "۵. در کل به این کارگاه چه نمره ای را می‌دهید؟", reply_markup=keyboard)
+                msg = bot.send_message(message.chat.id, "۵. در کل به این ارائه چه نمره ای را می‌دهید؟", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, fifth_question)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
@@ -606,7 +629,7 @@ def fifth_question(message):
                 chatId = message.chat.id
                 voterlist = user_dict[chatId]
                 voterlist.fifth_question = message.text
-                msg = bot.send_message(message.chat.id, "۶. اگر نظر دیگری درباره کارگاه دارید ذکر کنید. ", reply_markup=keyboard)
+                msg = bot.send_message(message.chat.id, "۶. اگر نظر دیگری درباره ارائه دهنده دارید ذکر کنید. ", reply_markup=keyboard)
                 bot.register_next_step_handler(msg, sixth_question)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
