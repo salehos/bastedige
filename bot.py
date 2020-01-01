@@ -30,7 +30,7 @@ def send_pm_to_all(message):
 def send_message_to_all(message):
     userFiles = open("/home/allusers.txt", "r+")
     ids = userFiles.read()
-    ids = ids.split(" ")
+    ids = ids.split("-")
     for i in ids:
         bot.send_message(int(i) , text = message.text)
     userFiles.flush()
@@ -57,7 +57,7 @@ def first_step(message):
     users = userFiles.read()
     users = users.split(" ")
     if str(message.chat.id) not in users:
-        userFiles.write(str(message.chat.id) + " ")
+        userFiles.write(str(message.chat.id) + "-")
     userFiles.flush()
     userFiles.close()
     msg = bot.reply_to(message, 'خوش آمدید. چه کمکی از دست من برمیاد؟', reply_markup=keyboard)
