@@ -55,7 +55,7 @@ def first_step(message):
     keyboard.add(sokhanraniTime)
     userFiles = open("/home/users.txt", "a+")
     users = userFiles.read()
-    if message.chat.id not in users:
+    if str(message.chat.id) not in users:
         userFiles.write(message.chat.id + " ")
     userFiles.flush()
     userFiles.close()
