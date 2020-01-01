@@ -27,7 +27,7 @@ def send_pm_to_all(message):
     msg = bot.send_message(message.chat.id , "now send me a text")
     bot.register_next_step_handler(msg, send_message_to_all)
 
-def send_message(message):
+def send_message_to_all(message):
     userFiles = open("/home/allusers.txt", "r+")
     ids = userFiles.read()
     ids = ids.split(" ")
