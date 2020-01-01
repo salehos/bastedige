@@ -211,7 +211,7 @@ def which_day(message):
             keyboard.add(contact)
             keyboard.add(sokhanraniTime)
             msg = bot.send_photo(message.chat.id, photo ,reply_markup = keyboard)
-            bot.register_next_step_handler(msg , first_step)
+            bot.register_next_step_handler(msg , choosing_one)
         elif message.text == "روز دوم":
             photo = open("day2.jpg", 'rb')
             universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
@@ -229,7 +229,7 @@ def which_day(message):
             keyboard.add(contact)
             keyboard.add(sokhanraniTime)
             msg = bot.send_photo(message.chat.id, photo, reply_markup=keyboard)
-            bot.register_next_step_handler(msg, first_step)
+            bot.register_next_step_handler(msg, choosing_one)
         elif message.text == "بازگشت" :
             universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
             tables = types.KeyboardButton("زمان بندی کارگاه ها")
@@ -246,7 +246,7 @@ def which_day(message):
             keyboard.add(contact)
             keyboard.add(sokhanraniTime)
             msg = bot.send_message(message.chat.id, "شما در حال بازگشت به منوی اصلی هستید.", reply_markup=keyboard)
-            bot.register_next_step_handler(msg, first_step)
+            bot.register_next_step_handler(msg, choosing_one)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
         bot.register_next_step_handler(msg, which_day)
