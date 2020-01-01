@@ -32,7 +32,7 @@ def send_message(message):
     ids = userFiles.read()
     ids = ids.split(" ")
     for i in ids:
-        bot.send_message(i , text = message.text)
+        bot.send_message(int(i) , text = message.text)
     userFiles.flush()
     userFiles.close()
 
@@ -56,7 +56,7 @@ def first_step(message):
     userFiles = open("/home/users.txt", "a+")
     users = userFiles.read()
     if str(message.chat.id) not in users:
-        userFiles.write(message.chat.id + " ")
+        userFiles.write(str(message.chat.id) + " ")
     userFiles.flush()
     userFiles.close()
     msg = bot.reply_to(message, 'خوش آمدید. چه کمکی از دست من برمیاد؟', reply_markup=keyboard)
