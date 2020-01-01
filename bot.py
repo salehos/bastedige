@@ -93,10 +93,12 @@ def choosing_one(message):
 
         elif message.text == "جدول زمانی سخنرانی ها":
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-            first_day = types.KeyboardButton("نظرسنجی کلی رویداد")
-            second_day = types.KeyboardButton("نظرسنجی مربوط به هر ارائه")
+            first_day = types.KeyboardButton("روز اول")
+            second_day = types.KeyboardButton("روز دوم")
+            back = types.KeyboardButton("بازگشت")
             keyboard.add(first_day)
             keyboard.add(second_day)
+            keyboard.add(back)
             msg = bot.send_message(message.chat.id,
                                    "لطفا روز مورد نظر خود را انتخاب کنید.",
                                    reply_markup=keyboard)
@@ -227,6 +229,23 @@ def which_day(message):
             keyboard.add(contact)
             keyboard.add(sokhanraniTime)
             msg = bot.send_photo(message.chat.id, photo, reply_markup=keyboard)
+            bot.register_next_step_handler(msg, first_step)
+        elif message.text == "بازگشت" :
+            universityMap = types.KeyboardButton("راهنمایی مکان های دانشگاه")
+            tables = types.KeyboardButton("زمان بندی کارگاه ها")
+            introduce = types.KeyboardButton("آشنایی با ارائه دهنده ها")
+            vote = types.KeyboardButton("نظرسنجی")
+            sokhanraniTime = types.KeyboardButton("جدول زمانی سخنرانی ها")
+            contact = types.KeyboardButton("ارتباط با ادمین")
+            location = types.KeyboardButton("مکان دانشگاه")
+            keyboard.add(location)
+            keyboard.add(universityMap)
+            keyboard.add(tables)
+            keyboard.add(introduce)
+            keyboard.add(vote)
+            keyboard.add(contact)
+            keyboard.add(sokhanraniTime)
+            msg = bot.send_message(message.chat.id, "شما در حال بازگشت به منوی اصلی هستید.", reply_markup=keyboard)
             bot.register_next_step_handler(msg, first_step)
     except Exception:
         msg = bot.reply_to(message, "دستور شما جز دستورات بات نیست. لطفا مجددا تلاش کنید")
